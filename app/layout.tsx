@@ -15,9 +15,10 @@ const fontMono = JetBrains_Mono({
   display: "swap",
 });
 
+// --- UPDATED WITH YOUR DETAILS FOR GOOGLE ---
 export const metadata: Metadata = {
-  title: "M.L Consulting | Enterprise Systems & IT Architecture",
-  description: "We engineer highly-scalable digital infrastructure, responsive custom applications, and clean design systems.",
+  title: "M.L Consulting | CEO: Junior Tumelo Malapela",
+  description: "Founded by Junior Tumelo Malapela (25) in Limpopo, M.L Consulting engineers highly-scalable digital infrastructure, responsive custom applications, and clean design systems to help businesses grow.",
 };
 
 export default function RootLayout({
