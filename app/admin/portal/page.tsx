@@ -28,11 +28,14 @@ export default function ProjectForm() {
     e.preventDefault();
     setIsSaving(true);
 
-    // 1. SAVE TO DATABASE
+    // 1. SAVE TO DATABASE (Internal Record)
+    // We generate a random ID for the database instead of asking you for a link name
+    const internalId = `PROJ-${Date.now()}`;
+
     const { error: dbError } = await supabase.from("projects").insert([{
       client_name: formData.client_name,
       client_email: formData.client_email,
-      slug: `direct-${Date.now()}`,
+      slug: internalId, 
       total_investment: formData.total_price,
       timeline_duration: formData.how_long_it_takes,
       services_selected: selectedServices,
@@ -45,7 +48,7 @@ export default function ProjectForm() {
       return;
     }
 
-    // 2. SEND THE EMAIL DIRECTLY
+    // 2. SEND THE EMAIL DIRECTLY TO CLIENT
     const response = await fetch('/api/send', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -61,7 +64,7 @@ export default function ProjectForm() {
     if (response.ok) {
       setIsFinished(true);
     } else {
-      alert("Data saved, but the Email failed. Check your Resend API Key.");
+      alert("Agreement saved to database, but Email failed. Check your Resend API Key.");
     }
     setIsSaving(false);
   };
@@ -70,12 +73,12 @@ export default function ProjectForm() {
 
   if (isFinished) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
-        <div className="max-w-md w-full bg-white p-10 rounded-lg shadow-2xl border-t-8 border-green-500 text-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6 font-sans">
+        <div className="max-w-md w-full bg-white p-10 rounded-lg shadow-2xl border-t-8 border-blue-600 text-center">
           <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-6" />
-          <h2 className="text-2xl font-bold text-slate-900">SUCCESS</h2>
-          <p className="text-slate-600 mt-4">The professional agreement has been sent directly to <strong>{formData.client_email}</strong>.</p>
-          <button onClick={() => window.location.reload()} className="mt-8 w-full py-4 bg-slate-900 text-white rounded font-bold uppercase text-xs tracking-widest">Send Another Agreement</button>
+          <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Email Sent</h2>
+          <p className="text-slate-600 mt-4">The formal project agreement has been delivered to <strong>{formData.client_email}</strong>.</p>
+          <button onClick={() => window.location.reload()} className="mt-8 w-full py-4 bg-slate-900 text-white rounded font-bold uppercase text-xs tracking-widest">Send Another</button>
         </div>
       </div>
     );
@@ -83,26 +86,39 @@ export default function ProjectForm() {
 
   return (
     <main className="min-h-screen bg-slate-50 py-12 px-6 font-sans">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto text-slate-900">
+        
+        {/* Simple Header */}
         <div className="flex items-center justify-between mb-10 pb-6 border-b-2 border-slate-900">
-          <div className="flex items-center gap-4 text-slate-900">
+          <div className="flex items-center gap-4">
             <FileText className="h-6 w-6" />
-            <h1 className="text-2xl font-black uppercase tracking-tight">Project Agreement Forge</h1>
+            <h1 className="text-2xl font-black uppercase tracking-tight">Project Agreement Portal</h1>
           </div>
           <Lock className="h-4 w-4 text-slate-300" />
         </div>
 
         <form onSubmit={handleCreate} className="space-y-8">
+          
+          {/* Section 1: Client Details */}
           <div className="bg-white p-8 rounded border border-slate-200 shadow-sm">
-            <h3 className="text-xs font-black text-blue-600 uppercase mb-6 tracking-widest">1. Client Details</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <input required placeholder="Client Company Name" className="border-b-2 p-3 outline-none focus:border-blue-600 text-sm font-bold" onChange={e => setFormData({...formData, client_name: e.target.value})} />
-              <input required type="email" placeholder="Client Email Address" className="border-b-2 p-3 outline-none focus:border-blue-600 text-sm font-bold" onChange={e => setFormData({...formData, client_email: e.target.value})} />
+            <h3 className="text-xs font-black text-blue-600 uppercase mb-8 tracking-widest border-l-4 border-blue-600 pl-4">1. Client Details</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase text-slate-500">Company Name</label>
+                <input required placeholder="Client's company name" className="w-full border-b-2 p-2 outline-none focus:border-blue-600 font-bold" 
+                  onChange={e => setFormData({...formData, client_name: e.target.value})} />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase text-slate-500">Client Email Address</label>
+                <input required type="email" placeholder="email@client.com" className="w-full border-b-2 p-2 outline-none focus:border-blue-600 font-bold" 
+                  onChange={e => setFormData({...formData, client_email: e.target.value})} />
+              </div>
             </div>
           </div>
 
+          {/* Section 2: Services */}
           <div className="bg-white p-8 rounded border border-slate-200 shadow-sm">
-            <h3 className="text-xs font-black text-blue-600 uppercase mb-6 tracking-widest">2. Services Selected</h3>
+            <h3 className="text-xs font-black text-blue-600 uppercase mb-8 tracking-widest border-l-4 border-blue-600 pl-4">2. Services for this Project</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {servicesList.map(s => (
                 <button key={s} type="button" onClick={() => setSelectedServices(prev => prev.includes(s) ? prev.filter(x => x !== s) : [...prev, s])} className={`p-4 border rounded text-[10px] font-bold text-left uppercase transition-all ${selectedServices.includes(s) ? "border-blue-600 bg-blue-50 text-blue-700" : "border-slate-100 text-slate-400"}`}>
@@ -112,14 +128,28 @@ export default function ProjectForm() {
             </div>
           </div>
 
-          <div className="bg-white p-8 rounded border border-slate-200 shadow-sm grid grid-cols-2 gap-8">
-            <input required placeholder="Investment (ZAR)" className="border-b-2 p-3 outline-none focus:border-blue-600 text-sm font-bold text-blue-600" onChange={e => setFormData({...formData, total_price: e.target.value})} />
-            <input required placeholder="Duration (Time)" className="border-b-2 p-3 outline-none focus:border-blue-600 text-sm font-bold" onChange={e => setFormData({...formData, how_long_it_takes: e.target.value})} />
+          {/* Section 3: Pricing & Time */}
+          <div className="bg-white p-8 rounded border border-slate-200 shadow-sm">
+            <h3 className="text-xs font-black text-blue-600 uppercase mb-8 tracking-widest border-l-4 border-blue-600 pl-4">3. Investment & Timeline</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase text-slate-500">Amount Charged (ZAR)</label>
+                <input required placeholder="R0.00" className="w-full border-b-2 p-2 outline-none focus:border-blue-600 font-bold text-blue-600 text-lg" 
+                  onChange={e => setFormData({...formData, total_price: e.target.value})} />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase text-slate-500">Project Duration</label>
+                <input required placeholder="e.g. 14 Days" className="w-full border-b-2 p-2 outline-none focus:border-blue-600 font-bold" 
+                  onChange={e => setFormData({...formData, how_long_it_takes: e.target.value})} />
+              </div>
+            </div>
           </div>
 
-          <button type="submit" disabled={isSaving} className="w-full bg-blue-600 text-white font-black py-5 rounded hover:bg-slate-900 transition-all uppercase tracking-widest text-xs shadow-xl">
-            {isSaving ? "SENDING..." : "DEPLOY AGREEMENT TO CLIENT EMAIL"}
+          {/* Final Button */}
+          <button type="submit" disabled={isSaving} className="w-full bg-blue-600 text-white font-black py-6 rounded hover:bg-slate-900 transition-all uppercase tracking-[0.2em] text-xs shadow-xl">
+            {isSaving ? "SENDING AGREEMENT..." : "SEND OFFICIAL AGREEMENT TO CLIENT"}
           </button>
+
         </form>
       </div>
     </main>
