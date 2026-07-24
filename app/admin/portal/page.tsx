@@ -6,7 +6,7 @@ import { FileText, CheckCircle, Lock } from "lucide-react";
 
 export default function ProjectForm() {
   const [isSaving, setIsSaving] = useState(false);
-  const [finishedLink, setFinishedLink] = useState("");
+  const [finished, setFinished] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -34,12 +34,13 @@ export default function ProjectForm() {
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!supabase) return alert("Database Error");
+    if (!supabase) return alert("Database Connection Error");
     setIsSaving(true);
 
     const safeLink = formData.link_name.toLowerCase().replace(/ /g, "-");
 
-    const { error } = await supabase.from("projects").insert([
+    // 1. SAVE TO DATABASE (FOR YOUR RECORDS)
+    const { error: dbError } = await supabase.from("projects").insert([
       {
         client_name: formData.client_name,
         client_email: formData.client_email,
@@ -47,30 +48,51 @@ export default function ProjectForm() {
         total_investment: formData.total_price,
         timeline_duration: formData.how_long_it_takes,
         services_selected: selectedServices,
-        status: "ACTIVE"
+        status: "SENT"
       }
     ]);
 
-    if (error) {
-      alert("Error: " + error.message);
-    } else {
-      setFinishedLink(`https://ml-consulting-iota.vercel.app/portal/${safeLink}`);
+    if (dbError) {
+      alert("Database Error: " + dbError.message);
+      setIsSaving(false);
+      return;
     }
+
+    // 2. SEND THE PROFESSIONAL EMAIL TO THE CLIENT
+    try {
+      const emailResponse = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          client_name: formData.client_name,
+          client_email: formData.client_email,
+          total_price: formData.total_price,
+          duration: formData.how_long_it_takes,
+          services: selectedServices
+        }),
+      });
+
+      if (emailResponse.ok) {
+        setFinished(true);
+      } else {
+        alert("Project saved, but the email failed to send. Check your Resend API Key.");
+      }
+    } catch (err) {
+      alert("Could not connect to the email server.");
+    }
+
     setIsSaving(false);
   };
 
   if (!mounted) return null;
 
-  if (finishedLink) {
+  if (finished) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center p-10">
+      <div className="min-h-screen bg-white flex items-center justify-center p-10 font-sans">
         <div className="max-w-md w-full border-2 border-slate-900 p-10 rounded-lg text-center shadow-2xl">
           <CheckCircle className="h-16 w-16 text-green-600 mx-auto mb-6" />
-          <h2 className="text-2xl font-bold text-slate-900">Project Saved</h2>
-          <p className="text-slate-600 mt-4 font-medium">Copy and send this link to the client:</p>
-          <div className="mt-4 p-4 bg-slate-100 border border-slate-200 rounded font-bold text-blue-600 break-all">
-            {finishedLink}
-          </div>
+          <h2 className="text-2xl font-black text-slate-900 uppercase">Agreement Sent</h2>
+          <p className="text-slate-600 mt-4 font-medium">The professional agreement has been sent directly to <strong>{formData.client_email}</strong>.</p>
           <button onClick={() => window.location.reload()} className="mt-8 w-full py-4 bg-slate-900 text-white rounded font-bold uppercase text-xs tracking-widest">
             Create New Project
           </button>
@@ -96,7 +118,7 @@ export default function ProjectForm() {
           </div>
           <div className="flex items-center gap-2 text-slate-400">
             <Lock className="h-4 w-4" />
-            <span className="text-[10px] font-bold uppercase tracking-widest">Secure Access</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest">CEO Access</span>
           </div>
         </div>
 
@@ -104,7 +126,7 @@ export default function ProjectForm() {
           
           {/* Section 1: Client Information */}
           <div className="bg-white p-8 rounded-lg border border-slate-200 shadow-sm">
-            <h3 className="text-sm font-black text-slate-900 uppercase mb-8 border-l-4 border-blue-600 pl-4">1. Client Information</h3>
+            <h3 className="text-sm font-black text-slate-900 uppercase mb-8 border-l-4 border-blue-600 pl-4">1. Client Details</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-slate-700 uppercase">Company Name</label>
@@ -112,7 +134,7 @@ export default function ProjectForm() {
                   onChange={e => setFormData({...formData, client_name: e.target.value})} />
               </div>
               <div className="space-y-2">
-                <label className="text-xs font-bold text-slate-700 uppercase">Link Name (No spaces)</label>
+                <label className="text-xs font-bold text-slate-700 uppercase">Internal Slug (No spaces)</label>
                 <input required placeholder="e.g. acme-project" className="w-full border-2 border-slate-100 rounded-md p-3 font-medium outline-none focus:border-blue-600" 
                   onChange={e => setFormData({...formData, link_name: e.target.value})} />
               </div>
@@ -168,10 +190,6 @@ export default function ProjectForm() {
                  <p className="text-sm font-bold">Limpopo, South Africa</p>
                </div>
                <div>
-                 <p className="text-slate-400 uppercase font-bold mb-1">Primary Email</p>
-                 <p className="text-sm font-bold italic">hello@mlconsulting.com</p>
-               </div>
-               <div>
                  <p className="text-slate-400 uppercase font-bold mb-1">Security Standards</p>
                  <p className="text-sm font-bold uppercase tracking-tight">AES-256 / POPIA Compliant</p>
                </div>
@@ -180,7 +198,7 @@ export default function ProjectForm() {
 
           {/* Submit Button */}
           <button type="submit" disabled={isSaving} className="w-full bg-blue-600 text-white font-bold py-5 rounded-lg hover:bg-slate-900 transition-all uppercase tracking-widest text-xs shadow-xl">
-            {isSaving ? "Saving Project Details..." : "Create Official Agreement & Link"}
+            {isSaving ? "GENERATING & SENDING EMAIL..." : "SEND OFFICIAL AGREEMENT TO CLIENT"}
           </button>
 
         </form>
