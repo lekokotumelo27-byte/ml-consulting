@@ -2,22 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
-import { 
-  FileText, 
-  ShieldCheck, 
-  ShieldAlert, // Added this missing import
-  Zap, 
-  Clock, 
-  Send, 
-  CheckCircle2, 
-  Plus, 
-  Trash2,
-  Lock
-} from "lucide-react";
+import { FileText, CheckCircle, Lock } from "lucide-react";
 
-export default function CEOCommandCenter() {
-  const [isDeploying, setIsDeploying] = useState(false);
-  const [successLink, setSuccessLink] = useState("");
+export default function ProjectForm() {
+  const [isSaving, setIsSaving] = useState(false);
+  const [finishedLink, setFinishedLink] = useState("");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -27,75 +16,63 @@ export default function CEOCommandCenter() {
   const [formData, setFormData] = useState({
     client_name: "",
     client_email: "",
-    slug: "", 
-    total_investment: "R",
-    timeline_duration: "14 Business Days",
+    link_name: "", 
+    total_price: "R",
+    how_long_it_takes: "14 Days",
   });
 
-  const [vulnerabilities, setVulnerabilities] = useState([""]);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
 
   const servicesList = [
     "UI/UX System Design",
-    "Complete Web Engineering",
-    "Custom Application Design",
+    "Complete Web Design",
+    "Application & System Design",
     "System Setup & Integration",
     "Technical Support & Maintenance",
-    "Staff Training & Onboarding"
+    "Client Training & Onboarding"
   ];
 
-  const handleServiceToggle = (service: string) => {
-    setSelectedServices(prev => 
-      prev.includes(service) ? prev.filter(s => s !== service) : [...prev, service]
-    );
-  };
-
-  const handleDeploy = async (e: React.FormEvent) => {
+  const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!supabase) return alert("Database Connection Failed. Check your setup.");
-    setIsDeploying(true);
+    if (!supabase) return alert("Database Error");
+    setIsSaving(true);
 
-    const projectSlug = formData.slug.toLowerCase().replace(/ /g, "-");
+    const safeLink = formData.link_name.toLowerCase().replace(/ /g, "-");
 
     const { error } = await supabase.from("projects").insert([
       {
         client_name: formData.client_name,
         client_email: formData.client_email,
-        slug: projectSlug,
-        total_investment: formData.total_investment,
-        timeline_duration: formData.timeline_duration,
+        slug: safeLink,
+        total_investment: formData.total_price,
+        timeline_duration: formData.how_long_it_takes,
         services_selected: selectedServices,
-        detected_vulnerabilities: vulnerabilities.filter(v => v !== ""),
-        status: "PROPOSAL_SENT"
+        status: "ACTIVE"
       }
     ]);
 
     if (error) {
-      alert("System Error: " + error.message);
+      alert("Error: " + error.message);
     } else {
-      setSuccessLink(`https://ml-consulting-iota.vercel.app/portal/${projectSlug}`);
+      setFinishedLink(`https://ml-consulting-iota.vercel.app/portal/${safeLink}`);
     }
-    setIsDeploying(false);
+    setIsSaving(false);
   };
 
   if (!mounted) return null;
 
-  if (successLink) {
+  if (finishedLink) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
-        <div className="max-w-md w-full bg-white border-2 border-blue-600 p-10 rounded-xl text-center shadow-xl">
-          <CheckCircle2 className="h-16 w-16 text-green-600 mx-auto mb-6" />
-          <h2 className="text-2xl font-black text-slate-900 tracking-tight">PROJECT SUCCESSFULLY DEPLOYED</h2>
-          <p className="text-slate-600 mt-4 font-medium">The formal agreement is now live and ready for the client.</p>
-          <div className="mt-8 p-4 bg-slate-50 border border-slate-200 rounded-lg">
-            <p className="text-[10px] font-bold text-slate-400 uppercase mb-2">Private Access Link</p>
-            <code className="text-sm text-blue-600 font-bold break-all">{successLink}</code>
+      <div className="min-h-screen bg-white flex items-center justify-center p-10">
+        <div className="max-w-md w-full border-2 border-slate-900 p-10 rounded-lg text-center shadow-2xl">
+          <CheckCircle className="h-16 w-16 text-green-600 mx-auto mb-6" />
+          <h2 className="text-2xl font-bold text-slate-900">Project Saved</h2>
+          <p className="text-slate-600 mt-4 font-medium">Copy and send this link to the client:</p>
+          <div className="mt-4 p-4 bg-slate-100 border border-slate-200 rounded font-bold text-blue-600 break-all">
+            {finishedLink}
           </div>
-          <button 
-            onClick={() => window.location.reload()}
-            className="mt-8 w-full py-4 bg-blue-600 text-white rounded-lg font-bold text-sm uppercase tracking-widest shadow-lg hover:bg-blue-700 transition-all"
-          >
-            Create Another Agreement
+          <button onClick={() => window.location.reload()} className="mt-8 w-full py-4 bg-slate-900 text-white rounded font-bold uppercase text-xs tracking-widest">
+            Create New Project
           </button>
         </div>
       </div>
@@ -103,163 +80,107 @@ export default function CEOCommandCenter() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 py-16 px-6 font-sans">
+    <main className="min-h-screen bg-slate-50 py-12 px-6 font-sans">
       <div className="max-w-4xl mx-auto">
         
-        {/* Header Section */}
-        <div className="flex items-center justify-between mb-12 border-b-2 border-slate-200 pb-8 text-slate-900">
+        {/* Simple Professional Header */}
+        <div className="flex items-center justify-between mb-10 pb-6 border-b-2 border-slate-900">
           <div className="flex items-center gap-4">
-            <div className="h-12 w-12 bg-slate-900 rounded-lg flex items-center justify-center text-white">
+            <div className="h-12 w-12 bg-slate-900 rounded flex items-center justify-center text-white">
               <FileText className="h-6 w-6" />
             </div>
             <div>
-              <h1 className="text-3xl font-black tracking-tight">Project Agreement Forge</h1>
-              <p className="text-blue-600 font-bold text-xs uppercase tracking-widest">Internal Operations // M.L Consulting</p>
+              <h1 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Project Agreement Form</h1>
+              <p className="text-slate-500 text-sm font-medium italic">M.L Consulting Internal System</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm">
-            <Lock className="h-4 w-4 text-green-600" />
-            <span className="text-[10px] font-black text-slate-600 uppercase tracking-wider">Secure CEO Access</span>
+          <div className="flex items-center gap-2 text-slate-400">
+            <Lock className="h-4 w-4" />
+            <span className="text-[10px] font-bold uppercase tracking-widest">Secure Access</span>
           </div>
         </div>
 
-        <form onSubmit={handleDeploy} className="space-y-10">
+        <form onSubmit={handleCreate} className="space-y-8 text-slate-900">
           
-          {/* Section 1: Client Identification */}
-          <section className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
-            <h3 className="text-sm font-black text-slate-900 uppercase mb-8 border-l-4 border-blue-600 pl-4">1. Client Identification</h3>
+          {/* Section 1: Client Information */}
+          <div className="bg-white p-8 rounded-lg border border-slate-200 shadow-sm">
+            <h3 className="text-sm font-black text-slate-900 uppercase mb-8 border-l-4 border-blue-600 pl-4">1. Client Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-2">
-                <label className="block text-xs font-bold text-slate-700 uppercase">Client / Company Name</label>
-                <input 
-                  required 
-                  placeholder="Enter full legal company name" 
-                  className="w-full border-2 border-slate-100 rounded-lg p-3 outline-none focus:border-blue-600 text-slate-900 font-medium transition-all" 
-                  onChange={e => setFormData({...formData, client_name: e.target.value})} 
-                />
+                <label className="text-xs font-bold text-slate-700 uppercase">Company Name</label>
+                <input required placeholder="Client's company name" className="w-full border-2 border-slate-100 rounded-md p-3 font-medium outline-none focus:border-blue-600" 
+                  onChange={e => setFormData({...formData, client_name: e.target.value})} />
               </div>
               <div className="space-y-2">
-                <label className="block text-xs font-bold text-slate-700 uppercase">Unique Link Name (URL Slug)</label>
-                <input 
-                  required 
-                  placeholder="e.g. acme-corp-revamp" 
-                  className="w-full border-2 border-slate-100 rounded-lg p-3 outline-none focus:border-blue-600 text-slate-900 font-medium transition-all" 
-                  onChange={e => setFormData({...formData, slug: e.target.value})} 
-                />
+                <label className="text-xs font-bold text-slate-700 uppercase">Link Name (No spaces)</label>
+                <input required placeholder="e.g. acme-project" className="w-full border-2 border-slate-100 rounded-md p-3 font-medium outline-none focus:border-blue-600" 
+                  onChange={e => setFormData({...formData, link_name: e.target.value})} />
               </div>
               <div className="space-y-2 md:col-span-2">
-                <label className="block text-xs font-bold text-slate-700 uppercase">Authorized Billing Email</label>
-                <input 
-                  required 
-                  type="email" 
-                  placeholder="name@company.com" 
-                  className="w-full border-2 border-slate-100 rounded-lg p-3 outline-none focus:border-blue-600 text-slate-900 font-medium transition-all" 
-                  onChange={e => setFormData({...formData, client_email: e.target.value})} 
-                />
+                <label className="text-xs font-bold text-slate-700 uppercase">Client Email Address</label>
+                <input required type="email" placeholder="client@email.com" className="w-full border-2 border-slate-100 rounded-md p-3 font-medium outline-none focus:border-blue-600" 
+                  onChange={e => setFormData({...formData, client_email: e.target.value})} />
               </div>
             </div>
-          </section>
+          </div>
 
-          {/* Section 2: Engineering Scope */}
-          <section className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
-            <h3 className="text-sm font-black text-slate-900 uppercase mb-8 border-l-4 border-blue-600 pl-4">2. Engineering Service Scope</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {servicesList.map(service => (
+          {/* Section 2: Services & Pricing */}
+          <div className="bg-white p-8 rounded-lg border border-slate-200 shadow-sm">
+            <h3 className="text-sm font-black text-slate-900 uppercase mb-8 border-l-4 border-blue-600 pl-4">2. Services & Investment</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+              {servicesList.map(s => (
                 <button
-                  key={service}
+                  key={s}
                   type="button"
-                  onClick={() => handleServiceToggle(service)}
-                  className={`flex items-center justify-between p-4 border-2 rounded-xl transition-all font-bold text-xs uppercase tracking-tight ${
-                    selectedServices.includes(service) 
-                    ? "border-blue-600 bg-blue-50 text-blue-700 shadow-inner" 
-                    : "border-slate-50 bg-slate-50 text-slate-400 hover:border-slate-200"
+                  onClick={() => setSelectedServices(prev => prev.includes(s) ? prev.filter(x => x !== s) : [...prev, s])}
+                  className={`p-4 border-2 rounded-md font-bold text-[11px] text-left uppercase transition-all ${
+                    selectedServices.includes(s) ? "border-blue-600 bg-blue-50 text-blue-700" : "border-slate-50 bg-slate-50 text-slate-400 hover:border-slate-200"
                   }`}
                 >
-                  {service}
-                  {selectedServices.includes(service) && <CheckCircle2 className="h-4 w-4" />}
+                  {s}
                 </button>
               ))}
             </div>
-          </section>
-
-          {/* Section 3: Financial Architecture */}
-          <section className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
-            <h3 className="text-sm font-black text-slate-900 uppercase mb-8 border-l-4 border-blue-600 pl-4">3. Investment & Timeline</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-2">
-                <label className="flex items-center gap-2 text-xs font-bold text-slate-700 uppercase">
-                  <Zap className="h-4 w-4 text-blue-600" /> Total Project Investment (ZAR)
-                </label>
-                <input 
-                  required
-                  placeholder="e.g. R15,000.00" 
-                  className="w-full border-2 border-slate-100 rounded-lg p-3 outline-none focus:border-blue-600 text-blue-600 font-black text-lg" 
-                  onChange={e => setFormData({...formData, total_investment: e.target.value})} 
-                />
+                <label className="text-xs font-bold text-slate-700 uppercase">Total Amount Charged (ZAR)</label>
+                <input required placeholder="R0.00" className="w-full border-2 border-slate-100 rounded-md p-3 font-bold text-blue-600 outline-none focus:border-blue-600" 
+                  onChange={e => setFormData({...formData, total_price: e.target.value})} />
               </div>
               <div className="space-y-2">
-                <label className="flex items-center gap-2 text-xs font-bold text-slate-700 uppercase">
-                  <Clock className="h-4 w-4 text-blue-600" /> Estimated Project Duration
-                </label>
-                <input 
-                  required
-                  placeholder="e.g. 14 Business Days" 
-                  className="w-full border-2 border-slate-100 rounded-lg p-3 outline-none focus:border-blue-600 text-slate-900 font-bold" 
-                  onChange={e => setFormData({...formData, timeline_duration: e.target.value})} 
-                />
+                <label className="text-xs font-bold text-slate-700 uppercase">Project Duration (Time)</label>
+                <input required placeholder="e.g. 14 Days" className="w-full border-2 border-slate-100 rounded-md p-3 font-medium outline-none focus:border-blue-600" 
+                  onChange={e => setFormData({...formData, how_long_it_takes: e.target.value})} />
               </div>
             </div>
-          </section>
+          </div>
 
-          {/* Section 4: Vulnerability Analysis */}
-          <section className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
-            <div className="flex justify-between items-center mb-8 border-l-4 border-red-600 pl-4">
-              <h3 className="text-sm font-black text-slate-900 uppercase flex items-center gap-2">
-                <ShieldAlert className="h-4 w-4 text-red-600" /> Technical Audit Findings
-              </h3>
-              <button 
-                type="button" 
-                onClick={() => setVulnerabilities([...vulnerabilities, ""])}
-                className="text-[10px] font-black text-blue-600 bg-blue-50 px-3 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-100 transition-all border border-blue-100 shadow-sm"
-              >
-                <Plus className="h-4 w-4" /> ADD VULNERABILITY
-              </button>
+          {/* Section 3: Our Company Info */}
+          <div className="bg-slate-900 p-8 rounded-lg text-white">
+            <h3 className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-6 border-l-4 border-blue-600 pl-4">3. M.L Consulting Details</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-[11px]">
+               <div>
+                 <p className="text-slate-400 uppercase font-bold mb-1">Company Founder</p>
+                 <p className="text-sm font-bold">Junior Tumelo Malapela</p>
+               </div>
+               <div>
+                 <p className="text-slate-400 uppercase font-bold mb-1">Company Base</p>
+                 <p className="text-sm font-bold">Limpopo, South Africa</p>
+               </div>
+               <div>
+                 <p className="text-slate-400 uppercase font-bold mb-1">Primary Email</p>
+                 <p className="text-sm font-bold italic">hello@mlconsulting.com</p>
+               </div>
+               <div>
+                 <p className="text-slate-400 uppercase font-bold mb-1">Security Standards</p>
+                 <p className="text-sm font-bold uppercase tracking-tight">AES-256 / POPIA Compliant</p>
+               </div>
             </div>
-            
-            <div className="space-y-4">
-              {vulnerabilities.map((v, i) => (
-                <div key={i} className="flex gap-4">
-                  <input 
-                    placeholder="Describe the issue (e.g. Slow Database Latency)"
-                    className="flex-1 border-2 border-slate-100 rounded-lg p-3 text-sm text-slate-700 bg-slate-50 outline-none focus:border-red-500 focus:bg-white transition-all font-medium"
-                    value={v}
-                    onChange={e => {
-                      const newV = [...vulnerabilities];
-                      newV[i] = e.target.value;
-                      setVulnerabilities(newV);
-                    }}
-                  />
-                  <button 
-                    type="button" 
-                    title="Remove item"
-                    onClick={() => setVulnerabilities(vulnerabilities.filter((_, idx) => idx !== i))} 
-                    className="text-slate-300 hover:text-red-600 transition-colors p-2"
-                  >
-                    <Trash2 className="h-5 w-5" />
-                  </button>
-                </div>
-              ))}
-            </div>
-          </section>
+          </div>
 
-          {/* Final Deployment Button */}
-          <button 
-            type="submit"
-            disabled={isDeploying}
-            className="w-full bg-slate-900 text-white font-black py-6 rounded-xl text-sm uppercase tracking-[0.3em] flex items-center justify-center gap-4 hover:bg-blue-600 transition-all shadow-2xl disabled:opacity-50"
-          >
-            {isDeploying ? "ENGINEERING PROJECT ASSETS..." : "GENERATE AND DEPLOY AGREEMENT"}
-            <Send className="h-5 w-5" />
+          {/* Submit Button */}
+          <button type="submit" disabled={isSaving} className="w-full bg-blue-600 text-white font-bold py-5 rounded-lg hover:bg-slate-900 transition-all uppercase tracking-widest text-xs shadow-xl">
+            {isSaving ? "Saving Project Details..." : "Create Official Agreement & Link"}
           </button>
 
         </form>
