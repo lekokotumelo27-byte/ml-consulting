@@ -5,9 +5,9 @@ export default function Footer() {
     <footer className="mt-auto border-t border-neutral-200 bg-neutral-50 py-12">
       <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row justify-between items-center gap-6">
         
-        {/* Left Side License copyright */}
+        {/* Left Side License copyright - Updated to MLL DIGITAL CONSULTING */}
         <p className="font-mono text-[10px] text-slate-500 font-semibold tracking-wider uppercase order-last md:order-first">
-          © {new Date().getFullYear()} M.L CONSULTING. CODES ENGINEERED SECURELY.
+          © {new Date().getFullYear()} MLL DIGITAL CONSULTING. CODES ENGINEERED SECURELY.
         </p>
 
         {/* Right Side Secure Footer Links */}

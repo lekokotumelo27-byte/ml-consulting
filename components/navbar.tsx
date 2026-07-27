@@ -6,18 +6,15 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 // --- CONCEPT 3: THE APEX LINK (Abstract Strategy Logo) ---
 const MLApexLogo = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    {/* Background Shard (Light Blue) */}
     <path 
       d="M20 5L35 32H25L20 23L15 32H5L20 5Z" 
       fill="#60A5FA" 
       fillOpacity="0.3" 
     />
-    {/* Main Apex Shard (Logic Blue) */}
     <path 
       d="M20 5L32 28H23L20 22L17 28H8L20 5Z" 
       fill="#2563EB" 
     />
-    {/* Precision Point (Top Peak) */}
     <circle cx="20" cy="5" r="1.5" fill="#1E3A8A" />
   </svg>
 );
@@ -40,12 +37,12 @@ export default function Navbar() {
         <a href="/" className="flex items-center gap-3 group">
           <MLApexLogo className="h-9 w-9 transition-transform duration-500 group-hover:rotate-[360deg]" />
           <div className="flex flex-col">
-            <span className="font-sans text-xs font-black tracking-wider text-slate-900 uppercase">M.L Consulting</span>
-            <span className="font-mono text-[9px] text-blue-600 font-bold tracking-widest uppercase">Systems Architecture</span>
+            <span className="font-sans text-xs font-black tracking-wider text-slate-900 uppercase text-left leading-none">MLL Digital Consulting</span>
+            <span className="font-mono text-[9px] text-blue-600 font-bold tracking-widest uppercase mt-1">Systems Architecture</span>
           </div>
         </a>
 
-        {/* Desktop Links (Original) */}
+        {/* Desktop Links */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
@@ -58,25 +55,25 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Status & CTA (Original) */}
+        {/* Status & CTA (Conflict Fixed Here) */}
         <div className="hidden md:flex items-center gap-6">
           <div className="flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50/50 px-3 py-1">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
             </span>
-            <span className="font-mono text-[9px] font-bold text-blue-700 tracking-wider">CONSULTING_ACTIVE</span>
+            <span className="font-mono text-[9px] font-bold text-blue-700 tracking-widest uppercase">Consulting_Active</span>
           </div>
           <a
             href="/contact"
-            className="group flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-xs font-bold tracking-wider transition-all duration-200"
+            className="group flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-xs font-bold tracking-wider transition-all duration-200 shadow-sm"
           >
             INITIATE BRIEFING
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </div>
 
-        {/* Mobile Toggle (Original) */}
+        {/* Mobile Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="flex h-10 w-10 items-center justify-center rounded border border-neutral-200 md:hidden text-slate-900"
@@ -84,7 +81,7 @@ export default function Navbar() {
           {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
 
-        {/* Mobile Dropdown (Original) */}
+        {/* Mobile Dropdown */}
         {isOpen && (
           <div className="absolute left-0 top-16 w-full border-b border-neutral-200 bg-white px-6 py-8 md:hidden shadow-lg">
             <div className="flex flex-col gap-6">
@@ -103,7 +100,7 @@ export default function Navbar() {
                 <a
                   href="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="flex h-12 items-center justify-center gap-2 bg-blue-600 text-white text-xs font-bold tracking-wider rounded-lg"
+                  className="flex h-12 items-center justify-center gap-2 bg-blue-600 text-white text-xs font-bold tracking-wider rounded-lg shadow-sm"
                 >
                   INITIATE BRIEFING <ArrowUpRight className="h-4 w-4" />
                 </a>

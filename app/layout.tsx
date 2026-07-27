@@ -17,8 +17,8 @@ const fontMono = JetBrains_Mono({
 
 // --- UPDATED WITH YOUR DETAILS FOR GOOGLE ---
 export const metadata: Metadata = {
-  title: "M.L Consulting | CEO: Junior Tumelo Malapela",
-  description: "Founded by Junior Tumelo Malapela (25) in Limpopo, M.L Consulting engineers highly-scalable digital infrastructure, responsive custom applications, and clean design systems to help businesses grow.",
+  title: "MLL Digital Consulting | CEO: Junior Tumelo Malapela",
+  description: "Founded by Junior Tumelo Malapela (25) in Limpopo, MLL Digital Consulting engineers highly-scalable digital infrastructure, responsive custom applications, and clean design systems to help businesses grow.",
 };
 
 export default function RootLayout({

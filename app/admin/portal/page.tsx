@@ -41,10 +41,10 @@ export default function ProjectForm() {
       status: "SENT"
     }]);
 
-    // 2. CONSTRUCT THE FULL BRANDED AGREEMENT
+    // 2. CONSTRUCT THE FULL BRANDED AGREEMENT (Updated to MLL Digital Consulting)
     const agreementTemplate = `
 =========================================
-M.L CONSULTING // SYSTEMS ARCHITECTURE
+MLL DIGITAL CONSULTING // SYSTEMS ARCHITECTURE
 OFFICIAL PROJECT AGREEMENT
 =========================================
 
@@ -68,7 +68,7 @@ ESTIMATED DURATION: ${formData.how_long_it_takes}
 -----------------------------------------
 3.0 ARCHITECTURAL SECURITY STANDARDS
 -----------------------------------------
-All systems deployed by M.L Consulting adhere to 
+All systems deployed by MLL Digital Consulting adhere to 
 bank-grade security protocols:
 • AES-256 Bit Data Encryption
 • POPIA Compliant Infrastructure
@@ -77,13 +77,13 @@ bank-grade security protocols:
 -----------------------------------------
 4.0 CEO THANK YOU CARD
 -----------------------------------------
-"Thank you for choosing M.L Consulting. We don't 
+"Thank you for choosing MLL Digital Consulting. We don't 
 just build websites; we engineer the digital 
 engines that drive your business forward. We 
 are ready to scale with you."
 
 -----------------------------------------
-M.L CONSULTING EXECUTIVE SIGNATURE:
+MLL DIGITAL CONSULTING EXECUTIVE SIGNATURE:
 Junior Tumelo Malapela
 Chief Executive Officer
 Limpopo, South Africa
@@ -97,7 +97,7 @@ Limpopo, South Africa
       body: JSON.stringify({
         access_key: WEB3FORMS_KEY,
         subject: `OFFICIAL AGREEMENT: ${formData.client_name}`,
-        from_name: "M.L PROJECT FORGE",
+        from_name: "MLL PROJECT FORGE",
         message: agreementTemplate,
       }),
     });
@@ -134,7 +134,7 @@ Limpopo, South Africa
         <div className="flex items-center justify-between mb-10 pb-6 border-b-2 border-slate-900">
           <div className="flex items-center gap-4">
             <FileText className="h-6 w-6 text-blue-600" />
-            <h1 className="text-2xl font-black uppercase tracking-tight">Project Agreement Forge</h1>
+            <h1 className="text-2xl font-black uppercase tracking-tight">MLL Project Agreement Forge</h1>
           </div>
           <div className="flex items-center gap-2 text-slate-400">
             <Lock className="h-4 w-4" />
@@ -165,6 +165,21 @@ Limpopo, South Africa
           <div className="bg-white p-8 rounded border border-slate-200 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-8">
             <input required placeholder="Investment (ZAR)" className="border-b-2 p-3 outline-none focus:border-blue-600 font-bold text-blue-600 text-lg bg-transparent" onChange={e => setFormData({...formData, total_price: e.target.value})} />
             <input required placeholder="Duration (Time)" className="border-b-2 p-3 outline-none focus:border-blue-600 font-bold bg-transparent" onChange={e => setFormData({...formData, how_long_it_takes: e.target.value})} />
+          </div>
+
+          {/* Section 3: Rebranded MLL Digital Consulting Details */}
+          <div className="bg-slate-900 p-8 rounded-lg text-white">
+            <h3 className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-6 border-l-4 border-blue-600 pl-4">3. MLL Digital Consulting Details</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-[11px]">
+               <div>
+                 <p className="text-slate-400 uppercase font-bold mb-1">Company Founder</p>
+                 <p className="text-sm font-bold">Junior Tumelo Malapela</p>
+               </div>
+               <div>
+                 <p className="text-slate-400 uppercase font-bold mb-1">Company Base</p>
+                 <p className="text-sm font-bold">Limpopo, South Africa</p>
+               </div>
+            </div>
           </div>
 
           <button type="submit" disabled={isSaving} className="w-full bg-blue-600 text-white font-black py-6 rounded hover:bg-slate-900 transition-all uppercase tracking-[0.2em] text-xs shadow-xl flex items-center justify-center gap-3">
