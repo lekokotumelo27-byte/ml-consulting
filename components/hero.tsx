@@ -86,7 +86,7 @@ export default function Hero() {
             {/* Trust Verification */}
             <div className="flex items-center gap-3 shrink-0">
               <Lock className="h-4 w-4 text-blue-400" />
-              <p className="font-mono text-[10px] font-bold text-blue-400 tracking-widest uppercase">MLL_Trust_Verified</p>
+              <p className="font-mono text-[10px] font-bold text-blue-400 tracking-widest uppercase">MLL-Trust-Verified</p>
             </div>
 
           </div>
