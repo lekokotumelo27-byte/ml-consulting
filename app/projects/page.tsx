@@ -79,7 +79,7 @@ export default function ProjectsPage() {
               <div className="space-y-6">
                  <p className="text-base font-bold text-slate-800 leading-snug">Autonomous High-Stakes Neural Execution Engine.</p>
                  <p className="text-sm text-slate-600 leading-relaxed normal-case font-medium">
-                   We architected this system to eliminate the high-latency and emotional bottlenecks associated with manual USD Forex trading. The engine uses a **Python Quant Core** to manage asynchronous order execution, cross-referencing a **Triple-Agent Consensus**—Ollama, Gemini, and Max. Only once all agents reach a 3/3 majority agreement is the signal pushed to the live market.
+                   We architected this system to eliminate the high-latency and emotional bottlenecks associated with manual USD Forex trading. The engine uses a **Python Quant Core** to manage asynchronous order execution, cross-referencing a-Triple-Agent Consensus-Ollama, Gemini, and Max. Only once all agents reach a 3/3 majority agreement is the signal pushed to the live market.
                  </p>
               </div>
               <div className="flex gap-8 border-t border-neutral-200 mt-8 pt-8 font-mono">
