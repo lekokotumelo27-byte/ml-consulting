@@ -13,9 +13,7 @@ import {
   Database, 
   ArrowRight,
   Layers,
-  Users,
   HardHat,
-  ClipboardCheck,
   Zap
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -103,7 +101,7 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* PROJECT 02: TITAN LOGISTICS HUB (REAL WORLD CIVIL/SITE) */}
+      {/* PROJECT 02: OPERATIONAL OS (REAL WORLD CIVIL/SITE) */}
       <section className="py-24 bg-neutral-50/50">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -118,7 +116,7 @@ export default function ProjectsPage() {
                   className="object-cover brightness-90"
                 />
                 
-                {/* DIGITAL OVERLAY - SHOWS THE TECHNOLOGY IN ACTION */}
+                {/* DIGITAL OVERLAY */}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 flex flex-col gap-3">
                   <div className="bg-white/95 backdrop-blur-sm p-4 rounded-lg border-l-4 border-blue-600 shadow-lg">
@@ -144,13 +142,13 @@ export default function ProjectsPage() {
             {/* CLEAR DESCRIPTION */}
             <div className="lg:col-span-6">
               <span className="bg-slate-900 text-white text-[9px] font-black px-2 py-0.5 rounded tracking-tighter mb-4 inline-block">CASE STUDY 02</span>
-              <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 uppercase leading-tight">Titan <span className="text-blue-600">Logistics</span> Hub.</h2>
+              <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 uppercase leading-tight">Operational <span className="text-blue-600">OS.</span></h2>
               <div className="space-y-6">
                 <p className="text-xl font-bold text-slate-800 leading-snug">
                   Transforming messy site operations into one clear, digital portal.
                 </p>
                 <p className="text-base text-slate-600 leading-relaxed normal-case">
-                  Running a large workshop or construction site is difficult when tools, people, and deadlines are scattered. We are building the **Titan Hub** to bring everything together. It helps managers see exactly where their resources are, who is on-site, and if the project is hitting its safety and timeline goals.
+                  Running a large workshop or construction site is difficult when tools, people, and deadlines are scattered. We are building the **Operational OS** to bring everything together. It helps managers see exactly where their resources are, who is on-site, and if the project is hitting its safety and timeline goals.
                 </p>
               </div>
 
