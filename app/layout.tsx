@@ -16,13 +16,9 @@ const fontMono = JetBrains_Mono({
   display: "swap",
 });
 
-// --- CEO METADATA FOR GOOGLE ALIGNMENT ---
 export const metadata: Metadata = {
   title: "MLL Digital Consulting | CEO: Junior Tumelo Malapela",
-  description: "Founded by Junior Tumelo Malapela (25) in Limpopo, MLL Digital Consulting engineers highly-scalable digital infrastructure, responsive custom applications, and clean design systems to help businesses grow.",
-  keywords: ["MLL Digital Consulting", "Junior Tumelo Malapela", "IT Consulting Limpopo", "Systems Architecture South Africa", "Software Engineering"],
-  authors: [{ name: "Junior Tumelo Malapela" }],
-  viewport: "width=device-width, initial-scale=1",
+  description: "Founded by Junior Tumelo Malapela (25) in Limpopo, MLL Digital Consulting engineers highly-scalable digital infrastructure.",
 };
 
 export default function RootLayout({
@@ -33,18 +29,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fontSans.variable} ${fontMono.variable}`}>
       {/* 
-          VITAL CHANGE: Removed 'bg-white' and 'blueprint-grid-light' from body 
-          to allow the Cloud Engine to be visible.
+          IMPORTANT: We removed 'bg-white' from the body. 
+          Now the clouds in <CloudBackground /> will be visible.
       */}
-      <body className="text-slate-900 antialiased min-h-screen flex flex-col font-sans relative bg-slate-50">
+      <body className="text-slate-900 antialiased min-h-screen flex flex-col font-sans relative">
         
-        {/* 1. THE DYNAMIC CLOUD ENGINE (Base Layer) */}
+        {/* The Cloud Engine */}
         <CloudBackground />
 
-        {/* 2. THE BLUEPRINT GRID (Overlay Layer) */}
-        <div className="fixed inset-0 pointer-events-none blueprint-grid-light opacity-[0.05] z-[-10]"></div>
+        {/* The Blueprint Grid (Overlayed on the clouds) */}
+        <div className="fixed inset-0 pointer-events-none blueprint-grid-light opacity-30 z-[-10]"></div>
         
-        {/* 3. THE CONTENT LAYER */}
+        {/* The Content */}
         <div className="relative z-10 flex flex-col min-h-screen">
           {children}
         </div>
