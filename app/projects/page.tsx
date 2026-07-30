@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
-// --- CASE STUDY 01: THE TERMINAL LOGS (KEPT) ---
+// --- CASE STUDY 01: THE TERMINAL LOGS ---
 const LiveSystemLog = () => {
   const [logs, setLogs] = useState<string[]>([]);
   useEffect(() => {
@@ -75,12 +75,11 @@ export default function ProjectsPage() {
             
             <div className="lg:col-span-7">
               <span className="bg-blue-600 text-white text-[9px] font-black px-2 py-0.5 rounded tracking-tighter mb-4 inline-block">CASE STUDY 01</span>
-              {/* FIXED CSS CONFLICT BELOW */}
               <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-6 tracking-tight uppercase">INTER QUANT <span className="text-blue-600">DESK.</span></h2>
               <div className="space-y-6">
                  <p className="text-base font-bold text-slate-800 leading-snug">Autonomous High-Stakes Neural Execution Engine.</p>
                  <p className="text-sm text-slate-600 leading-relaxed normal-case font-medium">
-                   We architected this system to eliminate the high-latency and emotional bottlenecks associated with manual USD Forex trading. The engine uses a **Python Quant Core** to manage asynchronous order execution, cross-referencing a **Triple-Agent Consensus**—Ollama (Local Technical Analysis), Gemini (Global Macro Sentiment), and Max (Final Risk Oversight). Only once all agents reach a 3/3 majority agreement is the signal pushed to the live market.
+                   We architected this system to eliminate the high-latency and emotional bottlenecks associated with manual USD Forex trading. The engine uses a **Python Quant Core** to manage asynchronous order execution, cross-referencing a **Triple-Agent Consensus**—Ollama, Gemini, and Max. Only once all agents reach a 3/3 majority agreement is the signal pushed to the live market.
                  </p>
               </div>
               <div className="flex gap-8 border-t border-neutral-200 mt-8 pt-8 font-mono">
@@ -93,17 +92,18 @@ export default function ProjectsPage() {
               {/* TERMINAL LOGS KEPT */}
               <LiveSystemLog />
               
-              {/* REAL PICTURE (REPLACING CHART) */}
+              {/* STABLE SPLASH IMAGE (MATCHING CASE STUDY 2 CONFIG) */}
               <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl border border-neutral-200 bg-slate-900">
                 <Image 
-                  src="https://images.unsplash.com/photo-1558494949-ef8b565a19f7?auto=format&fit=crop&q=80&w=2070" 
-                  alt="Autonomous Server Intelligence" 
+                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2070" 
+                  alt="High-End System Infrastructure" 
                   fill
                   className="object-cover opacity-70"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
                 <div className="absolute bottom-4 left-4">
-                  <p className="font-mono text-[9px] text-blue-400 font-bold uppercase tracking-[0.2em]">Processing_Core_Active</p>
+                  <p className="font-mono text-[9px] text-blue-400 font-bold uppercase tracking-[0.2em]">Neural_Processing_Node_v1.0</p>
                 </div>
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* PROJECT 02: OPERATIONAL OS (LEFT AS IS) */}
+      {/* PROJECT 02: OPERATIONAL OS (LEFT EXACTLY AS IS) */}
       <section className="py-24 bg-neutral-50/50">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -143,7 +143,6 @@ export default function ProjectsPage() {
 
             <div className="lg:col-span-6">
               <span className="bg-slate-900 text-white text-[9px] font-black px-2 py-0.5 rounded tracking-tighter mb-4 inline-block uppercase">CASE STUDY 02</span>
-              {/* RE-BALANCED SIZE TO MATCH CS1 HEADER AS DISCUSSED */}
               <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-6 uppercase leading-tight tracking-tight">Operational <span className="text-blue-600">OS.</span></h2>
               <div className="space-y-6">
                 <p className="text-xl font-bold text-slate-800 leading-snug">Transforming messy site operations into one clear, digital portal.</p>
@@ -186,10 +185,9 @@ export default function ProjectsPage() {
       {/* FINAL CTA */}
       <section className="py-20 bg-slate-900 text-white text-center">
         <div className="mx-auto max-w-7xl px-6">
-          {/* FIXED CSS CONFLICT BELOW */}
           <h2 className="text-2xl md:text-3xl font-black mb-6 uppercase tracking-tight">Need this level of <span className="text-blue-500">Engineering?</span></h2>
           <p className="text-slate-400 max-w-xl mx-auto mb-10 text-sm md:text-base normal-case font-medium">
-            We architect systems that solve real-world operational bottlenecks. From AI trading desks to heavy-duty logistics portals, we build for growth.
+            We architect systems that solve real-world operational bottlenecks. Whether it&apos;s AI integration or custom cloud infrastructure, we build for scale.
           </p>
           <a href="/contact" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-xs tracking-widest transition-all">
             INITIATE SYSTEM AUDIT <ArrowRight className="h-4 w-4" />
