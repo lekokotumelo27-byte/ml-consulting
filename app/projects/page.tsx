@@ -3,7 +3,6 @@
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { 
   Brain, 
   Cpu, 
@@ -14,14 +13,15 @@ import {
   ArrowRight,
   Layers,
   Map,
-  Truck
+  Truck,
+  Navigation,
+  Box
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 // --- LIVE SYSTEM LOG COMPONENT ---
 const LiveSystemLog = () => {
   const [logs, setLogs] = useState<string[]>([]);
-
   useEffect(() => {
     const messages = [
       "[SYSTEM] Initializing Tri-Agent Consensus...",
@@ -32,7 +32,6 @@ const LiveSystemLog = () => {
       "[EXECUTION] Pushing asynchronous trade via Python Core...",
       "[DASHBOARD] Telemetry updated. Latency: 42ms",
     ];
-
     const interval = setInterval(() => {
       setLogs((prev) => {
         const nextMsg = messages[Math.floor(Math.random() * messages.length)];
@@ -73,71 +72,62 @@ const TradingVisual = () => {
       </div>
       <div className="flex-1 flex items-end gap-1 px-2">
         {[40, 70, 45, 90, 65, 80, 50, 60, 85, 40, 75, 55, 95, 60].map((height, i) => (
-          <motion.div 
-            key={i}
-            initial={{ height: 0 }}
-            animate={{ height: `${height}%` }}
-            transition={{ duration: 1, delay: i * 0.05 }}
-            className={`flex-1 rounded-t-sm ${i === 12 ? 'bg-blue-500 shadow-[0_0_10px_#2563EB]' : 'bg-slate-700 opacity-50'}`}
-          />
-        ))}
-      </div>
-      <div className="space-y-3 pt-2 border-t border-slate-800">
-        {[
-          { label: "OLLAMA_CONFIDENCE", val: "94%", color: "bg-blue-500" },
-          { label: "GEMINI_SENTIMENT", val: "88%", color: "bg-blue-400" },
-          { label: "MAX_RISK_SHIELD", val: "100%", color: "bg-green-500" }
-        ].map((bar) => (
-          <div key={bar.label}>
-            <div className="flex justify-between text-[8px] font-bold text-slate-500 mb-1 uppercase tracking-tighter">
-              <span>{bar.label}</span>
-              <span>{bar.val}</span>
-            </div>
-            <div className="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
-              <motion.div initial={{ width: 0 }} animate={{ width: bar.val }} transition={{ duration: 1.5 }} className={`h-full ${bar.color}`} />
-            </div>
-          </div>
+          <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${height}%` }} transition={{ duration: 1, delay: i * 0.05 }} className={`flex-1 rounded-t-sm ${i === 12 ? 'bg-blue-500 shadow-[0_0_10px_#2563EB]' : 'bg-slate-700 opacity-50'}`} />
         ))}
       </div>
     </div>
   );
 };
 
-// --- INFRASTRUCTURE DASHBOARD VISUAL ---
-const InfrastructureVisual = () => {
+// --- INFRASTRUCTURE SCHEMATIC VISUAL (NO EXTERNAL IMAGES) ---
+const InfrastructureSchematic = () => {
   return (
-    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl border border-neutral-200">
-      <Image 
-        src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=2070" 
-        alt="Civil Engineering Site" 
-        fill
-        className="object-cover"
-        priority
-      />
-      <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[1px]" />
-
-      <div className="relative p-6 h-full flex flex-col justify-between font-mono text-white">
+    <div className="relative w-full h-full bg-slate-950 overflow-hidden border border-slate-800 rounded-xl shadow-2xl font-mono">
+      {/* Blueprint Grid Background */}
+      <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:20px_20px]" />
+      
+      {/* Moving Site Nodes */}
+      <div className="relative p-6 h-full flex flex-col justify-between">
         <div className="flex justify-between items-start">
-          <div className="bg-white/90 p-3 rounded-lg border border-white shadow-sm">
-            <p className="text-[8px] font-bold text-blue-600 uppercase tracking-widest mb-1">Live_Site_Telemetry</p>
-            <p className="text-[10px] font-black text-slate-900">GPS: -23.8961, 29.4486</p>
-            <p className="text-[10px] font-black text-slate-900">SITES: 04_ACTIVE</p>
+          <div className="space-y-4">
+             <div className="flex items-center gap-3">
+                <div className="h-2 w-2 rounded-full bg-blue-500 animate-pulse shadow-[0_0_8px_#2563EB]" />
+                <span className="text-[10px] text-white font-bold tracking-widest uppercase">Site_Node_Alpha (Main)</span>
+             </div>
+             <div className="flex items-center gap-3 opacity-50">
+                <div className="h-2 w-2 rounded-full bg-slate-500" />
+                <span className="text-[10px] text-slate-400 font-bold tracking-widest uppercase">Site_Node_Beta (Active)</span>
+             </div>
           </div>
-          <div className="flex flex-col gap-2">
-            <span className="bg-blue-600 text-white text-[8px] font-black px-2 py-1 rounded uppercase">PHASE: EXCAVATION</span>
-            <span className="bg-slate-900/80 text-white text-[8px] font-black px-2 py-1 rounded border border-slate-700 uppercase backdrop-blur-md text-center">Uptime: 99.9%</span>
+          <div className="bg-blue-600/10 border border-blue-500/30 p-2 rounded text-right">
+             <p className="text-[8px] text-blue-400 font-bold uppercase tracking-widest">Global_Status</p>
+             <p className="text-[10px] text-white font-bold uppercase tracking-widest">OPTIMAL</p>
           </div>
         </div>
 
-        <div className="space-y-2">
-          <div className="bg-slate-900/90 border border-slate-700 p-3 rounded-lg backdrop-blur-md">
-            <div className="flex justify-between text-[8px] text-white font-bold mb-2 uppercase tracking-tighter">
-              <span>Logistics_Deployment_Progress</span>
-              <span>72%</span>
-            </div>
-            <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
-              <div className="h-full w-[72%] bg-blue-500 shadow-[0_0_10px_#2563EB]" />
-            </div>
+        {/* Abstract "Map" Connection Lines */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
+           <svg width="100%" height="100%" viewBox="0 0 400 300" className="stroke-blue-500">
+              <path d="M50 50 L200 150 L350 80" fill="none" strokeWidth="1" strokeDasharray="4 4" />
+              <circle cx="50" cy="50" r="3" fill="#2563EB" />
+              <circle cx="200" cy="150" r="3" fill="#2563EB" />
+              <circle cx="350" cy="80" r="3" fill="#2563EB" />
+           </svg>
+        </div>
+
+        {/* Bottom Data Bar */}
+        <div className="bg-slate-900/80 backdrop-blur-md border border-slate-700 p-3 rounded-lg">
+          <div className="flex justify-between items-center text-[8px] text-slate-400 font-bold mb-2 uppercase">
+             <span>Logistics_Throughput</span>
+             <span className="text-blue-400 font-black">72.4% CAP</span>
+          </div>
+          <div className="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+             <motion.div 
+               initial={{ width: 0 }} 
+               animate={{ width: '72%' }} 
+               transition={{ duration: 2 }}
+               className="h-full bg-blue-500" 
+             />
           </div>
         </div>
       </div>
@@ -146,16 +136,11 @@ const InfrastructureVisual = () => {
 };
 
 export default function ProjectsPage() {
-  const brains = [
-    { name: "Ollama", role: "Local Market Intelligence", description: "Handles high-speed local data processing and technical indicator scanning.", icon: <Cpu className="h-5 w-5" /> },
-    { name: "Gemini", role: "Global Macro Sentiment", description: "Processes real-time news feeds and global economic shifts.", icon: <Brain className="h-5 w-5" /> },
-    { name: "Max", role: "Risk & Execution Controller", description: "The final gatekeeper. Cross-references all signals against risk protocols.", icon: <ShieldCheck className="h-5 w-5" /> }
-  ];
-
   return (
     <main className="min-h-screen flex flex-col bg-white font-sans text-slate-900">
       <Navbar />
 
+      {/* PAGE HEADER */}
       <section className="border-b border-neutral-200 bg-white py-12">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -169,17 +154,18 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <section className="py-20 border-b border-neutral-200 blueprint-grid-light relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 relative z-10">
+      {/* PROJECT 01: INTER QUANT DESK */}
+      <section className="py-20 border-b border-neutral-200 blueprint-grid-light">
+        <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             <div className="lg:col-span-7">
               <div className="flex items-center gap-2 mb-4">
                 <span className="bg-blue-600 text-white text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-tighter">Case Study 01</span>
                 <span className="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-widest underline decoration-blue-500 underline-offset-4">IQ-DESK-001</span>
               </div>
-              <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase mb-6 leading-tight">Inter Quant <span className="text-blue-600 underline decoration-blue-100">Desk.</span></h2>
+              <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase mb-6 leading-tight">Inter Quant <span className="text-blue-600">Desk.</span></h2>
               <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl font-medium">
-                Engineered as an autonomous high-stakes liquidity engine, the IQ-Desk eliminates human cognitive bias through a triple-agent neural consensus. It cross-verifies market volatility before moving a single dollar.
+                Engineered as an autonomous high-stakes liquidity engine, the IQ-Desk eliminates human cognitive bias through a triple-agent neural consensus.
               </p>
               <div className="flex flex-wrap gap-8 border-t border-neutral-200 pt-10">
                 <div className="flex items-center gap-3"><Code2 className="h-5 w-5 text-blue-600" /><span className="font-mono text-[11px] font-bold uppercase tracking-widest">Python_Core</span></div>
@@ -194,29 +180,18 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-white border-b border-neutral-200">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {brains.map((brain, i) => (
-              <motion.div key={brain.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} viewport={{ once: true }} className="p-8 rounded-xl border border-neutral-200 bg-neutral-50/50 hover:border-blue-300 transition-all group">
-                <div className="h-10 w-10 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">{brain.icon}</div>
-                <h4 className="font-sans text-lg font-bold text-slate-900 mb-2 uppercase tracking-tight">{brain.name}</h4>
-                <p className="font-mono text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-4">{brain.role}</p>
-                <p className="text-sm text-slate-600 leading-relaxed">{brain.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-neutral-50/50 border-b border-neutral-200 relative overflow-hidden">
+      {/* PROJECT 02: TITAN INFRASTRUCTURE HUB */}
+      <section className="py-20 bg-neutral-50/50 border-b border-neutral-200">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            {/* THE NEW SCHEMATIC VISUAL */}
             <div className="lg:col-span-6">
-              <div className="aspect-[4/3] w-full relative">
-                <InfrastructureVisual />
+              <div className="aspect-[4/3] w-full">
+                <InfrastructureSchematic />
               </div>
             </div>
+
             <div className="lg:col-span-6">
               <div className="flex items-center gap-2 mb-4">
                 <span className="bg-slate-900 text-white text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-tighter">Case Study 02</span>
@@ -226,47 +201,44 @@ export default function ProjectsPage() {
               <div className="relative mb-6">
                 <div className="absolute left-0 top-0 h-full w-1 bg-blue-600" />
                 <p className="pl-6 font-mono text-[11px] font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">[ ACTIVE_DEVELOPMENT // PHASE_BETA ]</p>
-                <p className="pl-6 text-xl font-bold text-slate-800 leading-snug">Re-architecting operational oversight for the modern civil engineering environment.</p>
+                <p className="pl-6 text-xl font-bold text-slate-800 leading-snug">Re-architecting operational oversight for civil engineering environments.</p>
               </div>
-              <p className="text-base text-slate-600 leading-relaxed mb-10 max-w-lg">Building for the physical world requires digital precision. We are currently architecting a centralized Resource Hub designed to handle multi-site coordination, tracking heavy-asset utilization and safety compliance.</p>
+              <p className="text-base text-slate-600 leading-relaxed mb-10 max-w-lg">
+                Building for the physical world requires digital precision. We are currently architecting a centralized Resource Hub to handle multi-site coordination and asset utilization.
+              </p>
+
               <div className="grid grid-cols-2 gap-6 pt-10 border-t border-neutral-200">
                 <div className="flex items-start gap-3">
-                  <Map className="h-5 w-5 text-blue-600 shrink-0" />
+                  <Navigation className="h-5 w-5 text-blue-600 shrink-0" />
                   <div>
-                    <p className="font-sans text-xs font-bold text-slate-900 uppercase">Geospatial Mapping</p>
-                    <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">Multi-site telemetry tracking via integrated GPS.</p>
+                    <p className="font-sans text-xs font-bold text-slate-900 uppercase">Site Telemetry</p>
+                    <p className="text-[11px] text-slate-500 mt-1">Integrated node tracking across multiple project zones.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Truck className="h-5 w-5 text-blue-600 shrink-0" />
+                  <Box className="h-5 w-5 text-blue-600 shrink-0" />
                   <div>
-                    <p className="font-sans text-xs font-bold text-slate-900 uppercase">Asset Utilization</p>
-                    <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">Real-time oversight of heavy machinery deployment.</p>
+                    <p className="font-sans text-xs font-bold text-slate-900 uppercase">Asset Control</p>
+                    <p className="text-[11px] text-slate-500 mt-1">Real-time oversight of industrial resource deployment.</p>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
+      {/* FINAL CTA */}
       <section className="py-20 bg-slate-900 text-white text-center">
         <div className="mx-auto max-w-7xl px-6 text-center">
           <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6">Need this level of <span className="text-blue-500">Engineering?</span></h2>
-          <p className="text-slate-400 max-w-xl mx-auto mb-10 text-sm md:text-base">We architect systems that solve complex operational bottlenecks. Whether it&apos;s AI integration or custom cloud infrastructure, we build it for scale.</p>
+          <p className="text-slate-400 max-w-xl mx-auto mb-10 text-sm md:text-base">We architect systems that solve complex operational bottlenecks.</p>
           <a href="/contact" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-xs uppercase tracking-widest transition-all">Initiate System Audit <ArrowRight className="h-4 w-4" /></a>
         </div>
       </section>
 
       <Footer />
     </main>
-  );
-}
-
-function CircleStackIcon({ className }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75m-16.5-3.75v3.75" />
-    </svg>
   );
 }
