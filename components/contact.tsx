@@ -168,7 +168,7 @@ export default function Contact() {
                     />
                   </div>
 
-                  {/* Accessible Select Dropdown for the 6 core services */}
+                  {/* Accessible Select Dropdown with Updated Services */}
                   <div>
                     <label 
                       htmlFor="form-service"
@@ -189,6 +189,11 @@ export default function Contact() {
                         <option value="System Setup & Integration">System Setup & Integration</option>
                         <option value="Client Training & Onboarding">Client Training & Onboarding</option>
                         <option value="Technical Support & Maintenance">Technical Support & Maintenance</option>
+                        <option value="Software Modernization">Software Modernization</option>
+                        <option value="Cloud Scaling & Migration">Cloud Scaling & Migration</option>
+                        <option value="Business Workflow Automation">Business Workflow Automation</option>
+                        <option value="Security & POPIA Compliance Audit">Security & POPIA Compliance Audit</option>
+                        <option value="Technical Strategy & Roadmap Planning">Technical Strategy & Roadmap Planning</option>
                       </select>
                       {/* CSS-Only Absolute SVG Chevron overlay */}
                       <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
