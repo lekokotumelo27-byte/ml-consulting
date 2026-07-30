@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import CloudBackground from "@/components/cloud-background"; // Import our new engine
+import CloudBackground from "@/components/cloud-background";
 // @ts-ignore
 import "./globals.css";
 
@@ -16,7 +16,7 @@ const fontMono = JetBrains_Mono({
   display: "swap",
 });
 
-// --- ENHANCED CEO METADATA FOR GOOGLE ALIGNMENT ---
+// --- CEO METADATA FOR GOOGLE ALIGNMENT ---
 export const metadata: Metadata = {
   title: "MLL Digital Consulting | CEO: Junior Tumelo Malapela",
   description: "Founded by Junior Tumelo Malapela (25) in Limpopo, MLL Digital Consulting engineers highly-scalable digital infrastructure, responsive custom applications, and clean design systems to help businesses grow.",
@@ -32,15 +32,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${fontSans.variable} ${fontMono.variable}`}>
-      <body className="text-slate-900 antialiased min-h-screen flex flex-col font-sans relative">
+      {/* 
+          VITAL CHANGE: Removed 'bg-white' and 'blueprint-grid-light' from body 
+          to allow the Cloud Engine to be visible.
+      */}
+      <body className="text-slate-900 antialiased min-h-screen flex flex-col font-sans relative bg-slate-50">
         
-        {/* 1. THE DYNAMIC CLOUD ENGINE (Sits behind everything) */}
+        {/* 1. THE DYNAMIC CLOUD ENGINE (Base Layer) */}
         <CloudBackground />
 
-        {/* 2. THE BLUEPRINT GRID OVERLAY (Gives the technical feel) */}
-        <div className="fixed inset-0 pointer-events-none blueprint-grid-light opacity-[0.03] z-[-10]"></div>
+        {/* 2. THE BLUEPRINT GRID (Overlay Layer) */}
+        <div className="fixed inset-0 pointer-events-none blueprint-grid-light opacity-[0.05] z-[-10]"></div>
         
-        {/* 3. MAIN CONTENT (Transparent background to show clouds) */}
+        {/* 3. THE CONTENT LAYER */}
         <div className="relative z-10 flex flex-col min-h-screen">
           {children}
         </div>

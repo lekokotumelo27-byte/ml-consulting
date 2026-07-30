@@ -8,36 +8,38 @@
 }
 
 body {
-  background-color: #FFFFFF;
+  /* VITAL CHANGE: Background is now transparent to allow the Cloud Engine to show through */
+  background-color: transparent; 
   color: #0F172A;
   font-family: var(--font-geist-sans);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom premium light blue scrollbar for the browser */
+/* Custom premium light blue scrollbar - Updated for transparency */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1); /* Subtle transparent track */
 }
 ::-webkit-scrollbar-thumb {
   background: #E2E8F0;
   border-radius: 4px;
-  border: 2px solid #FFFFFF;
+  border: 2px solid transparent;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #2563EB;
 }
 
-/* Clinical Blue Highlight State (when you select text on the page) */
+/* Clinical Blue Highlight State */
 ::selection {
   background-color: #DBEAFE;
   color: #1E3A8A;
 }
 
 /* Structural blueprint grid: ultra-fine light blue lines */
+/* We keep this logic, but we will apply it as an overlay in the layout */
 .blueprint-grid-light {
   background-size: 40px 40px;
   background-image: 
