@@ -3,6 +3,7 @@
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { 
   Brain, 
   Cpu, 
@@ -11,7 +12,9 @@ import {
   Code2, 
   Database, 
   ArrowRight,
-  Layers
+  Layers,
+  Map,
+  Truck
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -68,7 +71,6 @@ const TradingVisual = () => {
           <span className="text-[9px] text-blue-400 font-bold">LATENCY: 12ms</span>
         </div>
       </div>
-      
       <div className="flex-1 flex items-end gap-1 px-2">
         {[40, 70, 45, 90, 65, 80, 50, 60, 85, 40, 75, 55, 95, 60].map((height, i) => (
           <motion.div 
@@ -80,7 +82,6 @@ const TradingVisual = () => {
           />
         ))}
       </div>
-
       <div className="space-y-3 pt-2 border-t border-slate-800">
         {[
           { label: "OLLAMA_CONFIDENCE", val: "94%", color: "bg-blue-500" },
@@ -93,12 +94,7 @@ const TradingVisual = () => {
               <span>{bar.val}</span>
             </div>
             <div className="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
-              <motion.div 
-                initial={{ width: 0 }} 
-                animate={{ width: bar.val }} 
-                transition={{ duration: 1.5 }}
-                className={`h-full ${bar.color}`} 
-              />
+              <motion.div initial={{ width: 0 }} animate={{ width: bar.val }} transition={{ duration: 1.5 }} className={`h-full ${bar.color}`} />
             </div>
           </div>
         ))}
@@ -107,26 +103,53 @@ const TradingVisual = () => {
   );
 };
 
+// --- INFRASTRUCTURE DASHBOARD VISUAL ---
+const InfrastructureVisual = () => {
+  return (
+    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl border border-neutral-200">
+      <Image 
+        src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=2070" 
+        alt="Civil Engineering Site" 
+        fill
+        className="object-cover"
+        priority
+      />
+      <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[1px]" />
+
+      <div className="relative p-6 h-full flex flex-col justify-between font-mono text-white">
+        <div className="flex justify-between items-start">
+          <div className="bg-white/90 p-3 rounded-lg border border-white shadow-sm">
+            <p className="text-[8px] font-bold text-blue-600 uppercase tracking-widest mb-1">Live_Site_Telemetry</p>
+            <p className="text-[10px] font-black text-slate-900">GPS: -23.8961, 29.4486</p>
+            <p className="text-[10px] font-black text-slate-900">SITES: 04_ACTIVE</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <span className="bg-blue-600 text-white text-[8px] font-black px-2 py-1 rounded uppercase">PHASE: EXCAVATION</span>
+            <span className="bg-slate-900/80 text-white text-[8px] font-black px-2 py-1 rounded border border-slate-700 uppercase backdrop-blur-md text-center">Uptime: 99.9%</span>
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <div className="bg-slate-900/90 border border-slate-700 p-3 rounded-lg backdrop-blur-md">
+            <div className="flex justify-between text-[8px] text-white font-bold mb-2 uppercase tracking-tighter">
+              <span>Logistics_Deployment_Progress</span>
+              <span>72%</span>
+            </div>
+            <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+              <div className="h-full w-[72%] bg-blue-500 shadow-[0_0_10px_#2563EB]" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function ProjectsPage() {
   const brains = [
-    {
-      name: "Ollama",
-      role: "Local Market Intelligence",
-      description: "Handles high-speed local data processing and technical indicator scanning without external latency.",
-      icon: <Cpu className="h-5 w-5" />
-    },
-    {
-      name: "Gemini",
-      role: "Global Macro Sentiment",
-      description: "Processes real-time news feeds and global economic shifts to provide the system with 'context'.",
-      icon: <Brain className="h-5 w-5" />
-    },
-    {
-      name: "Max",
-      role: "Risk & Execution Controller",
-      description: "The final gatekeeper. Cross-references all signals against strict bank-grade risk management protocols.",
-      icon: <ShieldCheck className="h-5 w-5" />
-    }
+    { name: "Ollama", role: "Local Market Intelligence", description: "Handles high-speed local data processing and technical indicator scanning.", icon: <Cpu className="h-5 w-5" /> },
+    { name: "Gemini", role: "Global Macro Sentiment", description: "Processes real-time news feeds and global economic shifts.", icon: <Brain className="h-5 w-5" /> },
+    { name: "Max", role: "Risk & Execution Controller", description: "The final gatekeeper. Cross-references all signals against risk protocols.", icon: <ShieldCheck className="h-5 w-5" /> }
   ];
 
   return (
@@ -137,83 +160,46 @@ export default function ProjectsPage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <span className="bg-blue-600 text-white text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-tighter">Featured Case Study</span>
-                <span className="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-widest">ID: IQ-DESK-001</span>
-              </div>
               <h1 className="text-4xl md:text-6xl font-black tracking-tight text-slate-900 uppercase leading-none">
-                Inter <span className="text-blue-600">Quant</span> Desk
+                Our <span className="text-blue-600">Projects</span>
               </h1>
-            </div>
-            <div className="flex flex-col items-start md:items-end">
-              <span className="font-mono text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-1">SYSTEM_STATUS: FULLY_OPERATIONAL</span>
-              <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Built for Autonomous Forex Markets</p>
+              <p className="mt-4 font-mono text-[10px] text-slate-400 font-bold uppercase tracking-widest">MLL_DIGITAL // SYSTEM_ARCHITECTURE_LEDGER</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-neutral-50/50 border-b border-neutral-200 blueprint-grid-light relative overflow-hidden">
+      <section className="py-20 border-b border-neutral-200 blueprint-grid-light relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-            
             <div className="lg:col-span-7">
-              <h2 className="font-mono text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-6">[ ENGINEERING_BRIEF ]</h2>
-              <p className="text-xl md:text-2xl font-bold text-slate-800 leading-tight mb-8">
-                We engineered a high-stakes liquidity engine that eliminates human cognitive bias through a <span className="text-blue-600 underline decoration-blue-200 underline-offset-8">triple-agent neural consensus.</span>
-              </p>
-              <div className="space-y-6 text-slate-600 text-base leading-relaxed max-w-2xl">
-                <p>The IQ-Desk is not a trading bot; it is an autonomous infrastructure. By architecting a consensus model between three distinct LLM engines, the system cross-verifies technical volatility and macro-sentiment before moving a single dollar.</p>
-                <p>Running on an <span className="font-bold text-slate-900">Asynchronous Python Backend</span>, the engine handles complex API handshakes, while a <span className="font-bold text-slate-900">Reactive React Dashboard</span> visualizes live telemetry.</p>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="bg-blue-600 text-white text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-tighter">Case Study 01</span>
+                <span className="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-widest underline decoration-blue-500 underline-offset-4">IQ-DESK-001</span>
               </div>
-
-              <div className="mt-12 flex flex-wrap gap-8 border-t border-neutral-200 pt-10">
-                <div className="flex items-center gap-3">
-                  <Code2 className="h-5 w-5 text-blue-600" />
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-widest">Python_Core</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Layers className="h-5 w-5 text-blue-600" />
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-widest">React_Telemetry</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CircleStackIcon className="h-5 w-5 text-blue-600" />
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-widest">PostgreSQL_Ledger</span>
-                </div>
+              <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase mb-6 leading-tight">Inter Quant <span className="text-blue-600 underline decoration-blue-100">Desk.</span></h2>
+              <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl font-medium">
+                Engineered as an autonomous high-stakes liquidity engine, the IQ-Desk eliminates human cognitive bias through a triple-agent neural consensus. It cross-verifies market volatility before moving a single dollar.
+              </p>
+              <div className="flex flex-wrap gap-8 border-t border-neutral-200 pt-10">
+                <div className="flex items-center gap-3"><Code2 className="h-5 w-5 text-blue-600" /><span className="font-mono text-[11px] font-bold uppercase tracking-widest">Python_Core</span></div>
+                <div className="flex items-center gap-3"><Layers className="h-5 w-5 text-blue-600" /><span className="font-mono text-[11px] font-bold uppercase tracking-widest">React_Telemetry</span></div>
               </div>
             </div>
-
             <div className="lg:col-span-5 space-y-6">
               <LiveSystemLog />
-              <div className="aspect-video bg-white rounded-xl border border-neutral-200 shadow-xl overflow-hidden relative group">
-                <TradingVisual />
-              </div>
+              <div className="aspect-video bg-white rounded-xl border border-neutral-200 shadow-xl overflow-hidden relative"><TradingVisual /></div>
             </div>
-
           </div>
         </div>
       </section>
 
       <section className="py-24 bg-white border-b border-neutral-200">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-16">
-            <h3 className="font-mono text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-4">[ THE_CONSENSUS_LAYER ]</h3>
-            <h2 className="text-3xl font-black text-slate-900 uppercase">Three Brains. One <span className="text-blue-600">Decision.</span></h2>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {brains.map((brain, i) => (
-              <motion.div 
-                key={brain.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="p-8 rounded-xl border border-neutral-200 bg-neutral-50/50 hover:border-blue-300 transition-all group"
-              >
-                <div className="h-10 w-10 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                  {brain.icon}
-                </div>
+              <motion.div key={brain.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} viewport={{ once: true }} className="p-8 rounded-xl border border-neutral-200 bg-neutral-50/50 hover:border-blue-300 transition-all group">
+                <div className="h-10 w-10 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">{brain.icon}</div>
                 <h4 className="font-sans text-lg font-bold text-slate-900 mb-2 uppercase tracking-tight">{brain.name}</h4>
                 <p className="font-mono text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-4">{brain.role}</p>
                 <p className="text-sm text-slate-600 leading-relaxed">{brain.description}</p>
@@ -223,7 +209,48 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-slate-900 text-white">
+      <section className="py-20 bg-neutral-50/50 border-b border-neutral-200 relative overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div className="lg:col-span-6">
+              <div className="aspect-[4/3] w-full relative">
+                <InfrastructureVisual />
+              </div>
+            </div>
+            <div className="lg:col-span-6">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="bg-slate-900 text-white text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-tighter">Case Study 02</span>
+                <span className="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-widest underline decoration-blue-500 underline-offset-4">TITAN-HUB-02</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase mb-6 leading-tight">Titan <span className="text-blue-600">Infrastructure</span> Hub.</h2>
+              <div className="relative mb-6">
+                <div className="absolute left-0 top-0 h-full w-1 bg-blue-600" />
+                <p className="pl-6 font-mono text-[11px] font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">[ ACTIVE_DEVELOPMENT // PHASE_BETA ]</p>
+                <p className="pl-6 text-xl font-bold text-slate-800 leading-snug">Re-architecting operational oversight for the modern civil engineering environment.</p>
+              </div>
+              <p className="text-base text-slate-600 leading-relaxed mb-10 max-w-lg">Building for the physical world requires digital precision. We are currently architecting a centralized Resource Hub designed to handle multi-site coordination, tracking heavy-asset utilization and safety compliance.</p>
+              <div className="grid grid-cols-2 gap-6 pt-10 border-t border-neutral-200">
+                <div className="flex items-start gap-3">
+                  <Map className="h-5 w-5 text-blue-600 shrink-0" />
+                  <div>
+                    <p className="font-sans text-xs font-bold text-slate-900 uppercase">Geospatial Mapping</p>
+                    <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">Multi-site telemetry tracking via integrated GPS.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Truck className="h-5 w-5 text-blue-600 shrink-0" />
+                  <div>
+                    <p className="font-sans text-xs font-bold text-slate-900 uppercase">Asset Utilization</p>
+                    <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">Real-time oversight of heavy machinery deployment.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-slate-900 text-white text-center">
         <div className="mx-auto max-w-7xl px-6 text-center">
           <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6">Need this level of <span className="text-blue-500">Engineering?</span></h2>
           <p className="text-slate-400 max-w-xl mx-auto mb-10 text-sm md:text-base">We architect systems that solve complex operational bottlenecks. Whether it&apos;s AI integration or custom cloud infrastructure, we build it for scale.</p>
@@ -236,7 +263,6 @@ export default function ProjectsPage() {
   );
 }
 
-// Small helper for the missing icon in the stack
 function CircleStackIcon({ className }: { className?: string }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
