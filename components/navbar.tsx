@@ -27,6 +27,7 @@ export default function Navbar() {
     { name: "The Workshop", href: "/workshop" },
     { name: "Consulting", href: "/consulting" },
     { name: "Our Story", href: "/our-story" },
+    { name: "Projects", href: "/projects" },
   ];
 
   return (
