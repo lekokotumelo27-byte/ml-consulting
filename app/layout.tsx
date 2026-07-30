@@ -18,7 +18,7 @@ const fontMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "MLL Digital Consulting | CEO: Junior Tumelo Malapela",
-  description: "Founded by Junior Tumelo Malapela (25) in Limpopo, MLL Digital Consulting builds high-end digital systems.",
+  description: "Founded by Junior Tumelo Malapela (25) in Limpopo, MLL Digital Consulting engineers highly-scalable digital infrastructure.",
 };
 
 export default function RootLayout({
@@ -30,19 +30,18 @@ export default function RootLayout({
     <html lang="en" className={`${fontSans.variable} ${fontMono.variable}`}>
       <body className="text-slate-900 antialiased min-h-screen flex flex-col font-sans relative">
         
-        {/* The Masterpiece Cloud Engine */}
+        {/* Stable Cloud Background */}
         <CloudBackground />
 
-        {/* This CSS block forces all pages to let the clouds show through */}
-        <style dangerouslySetInnerHTML={{ __html: `
-          main, section, .bg-white, .bg-slate-50, .bg-blue-50\\/20 { 
-            background-color: transparent !important; 
-          }
-        `}} />
-        
+        {/* Content Container - Transparent to let the sky show through */}
         <div className="relative z-10 flex flex-col min-h-screen">
           {children}
         </div>
+
+        {/* Global Transparency Logic */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          main, section { background-color: transparent !important; }
+        `}} />
 
       </body>
     </html>
