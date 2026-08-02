@@ -10,14 +10,14 @@ const steps = [
     title: "Discover",
     description: "We start by understanding your business, your goals, and the real problem behind the request.",
     icon: <Search className="h-6 w-6 text-blue-600" />,
-    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1454165833767-027508496b4c?q=80&w=2070",
   },
   {
     id: "02",
     title: "Design",
     description: "We design scalable, secure, and user-centered solutions tailored to your business needs.",
     icon: <PenTool className="h-6 w-6 text-blue-600" />,
-    image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1581291518151-0107e77a3f5b?q=80&w=2070",
   },
   {
     id: "03",
@@ -37,74 +37,70 @@ const steps = [
 
 export default function Process() {
   return (
-    <section className="py-24 bg-white border-b border-neutral-200">
-      <div className="mx-auto max-w-6xl px-6">
+    <section className="py-24 bg-white border-b border-neutral-100">
+      <div className="mx-auto max-w-5xl px-6">
         
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-block px-3 py-1 rounded-md bg-blue-50 border border-blue-100 mb-4">
+        {/* Screenshot Heading Section */}
+        <div className="text-center mb-20">
+          <div className="inline-block px-3 py-1 rounded-md bg-blue-50 border border-blue-100 mb-6">
              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-blue-600">
                 OUR PROCESS
              </span>
           </div>
-          <h2 className="font-sans text-4xl font-black tracking-tight text-slate-900 uppercase md:text-5xl">
+          <h2 className="font-sans text-4xl font-black tracking-tight text-slate-900 uppercase">
             HOW MLL WORKS
           </h2>
-          <p className="mt-4 mx-auto max-w-2xl font-sans text-sm md:text-base text-slate-500 font-medium">
+          <p className="mt-4 mx-auto max-w-2xl font-sans text-sm text-slate-500 font-medium leading-relaxed">
             We follow a proven engineering process that ensures every solution we build delivers real value and long-term impact.
           </p>
         </div>
 
-        {/* Vertical Stacked Cards */}
+        {/* Process Cards */}
         <div className="flex flex-col items-center">
           {steps.map((step, index) => (
             <div key={step.id} className="w-full flex flex-col items-center">
               
-              {/* Step Card */}
               <motion.div 
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="w-full grid grid-cols-1 lg:grid-cols-2 items-center bg-white rounded-[2.5rem] border border-neutral-100 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] overflow-hidden"
+                className="w-full grid grid-cols-1 lg:grid-cols-2 bg-white rounded-[2rem] border border-neutral-200 shadow-sm overflow-hidden min-h-[300px]"
               >
-                {/* Text Content */}
-                <div className="p-10 lg:p-16 flex items-start gap-8">
-                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-blue-50 border border-blue-100 shadow-sm">
+                {/* Content Side */}
+                <div className="p-10 lg:p-14 flex items-start gap-8">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-blue-50 border border-blue-100">
                     {step.icon}
                   </div>
-                  <div className="flex flex-col">
-                    <div className="flex items-center gap-3">
+                  <div className="pt-1">
+                    <div className="flex items-center gap-3 mb-2">
                         <span className="font-mono text-lg font-bold text-blue-600 italic">
                         {step.id}
                         </span>
-                        <h3 className="font-sans text-3xl font-black text-slate-900 uppercase">
+                        <h3 className="font-sans text-2xl font-black text-slate-900 uppercase">
                         {step.title}
                         </h3>
                     </div>
-                    <p className="mt-4 font-sans text-slate-500 leading-relaxed text-base font-medium">
+                    <p className="font-sans text-slate-500 leading-relaxed text-sm font-medium max-w-sm">
                       {step.description}
                     </p>
                   </div>
                 </div>
 
-                {/* Right Image */}
-                <div className="relative h-full min-h-[400px] p-6 hidden lg:block">
-                  <div className="relative h-full w-full rounded-[1.5rem] overflow-hidden shadow-inner">
+                {/* Image Side */}
+                <div className="relative hidden lg:block h-full w-full">
                     <Image 
                         src={step.image} 
                         alt={step.title}
                         fill
                         className="object-cover"
                     />
-                  </div>
                 </div>
               </motion.div>
 
-              {/* Connecting Arrow */}
+              {/* Connecting Blue Arrow */}
               {index !== steps.length - 1 && (
-                <div className="py-8">
-                  <ArrowDown className="h-7 w-7 text-blue-600 opacity-60" />
+                <div className="py-6">
+                  <ArrowDownIcon className="h-6 w-6 text-blue-600" />
                 </div>
               )}
             </div>
@@ -116,11 +112,10 @@ export default function Process() {
   );
 }
 
-// Custom Arrow Component to avoid import conflict
-function ArrowDown({ className }: { className?: string }) {
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className={className}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
-        </svg>
-    )
+function ArrowDownIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <path d="M12 4V20M12 20L18 14M12 20L6 14" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
 }
