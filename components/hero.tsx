@@ -55,7 +55,7 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Performance Metrics */}
+        {/* Performance Metrics - FULLY KEPT */}
         <div className="mt-20 grid grid-cols-1 gap-6 border-t border-neutral-200 pt-10 sm:grid-cols-3">
           
           <div className="flex items-start gap-4">
