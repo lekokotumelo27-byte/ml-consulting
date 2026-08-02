@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Terminal, ArrowRight, Zap, ShieldCheck, Globe, Activity, Lock, Cpu } from "lucide-react";
+import { Terminal, ArrowRight, Zap, ShieldCheck, Globe } from "lucide-react";
 import Image from "next/image";
 
 export default function Hero() {
@@ -53,43 +53,6 @@ export default function Hero() {
           >
             VIEW OUR SERVICES
           </a>
-        </div>
-
-        {/* 4. THE LIVE COMMAND CENTER (New Beneficial Section) */}
-        <div className="mt-12 max-w-5xl bg-slate-900 rounded-xl p-1 shadow-2xl border border-slate-800">
-          <div className="flex flex-col md:flex-row items-center justify-between px-6 py-4 gap-6 bg-slate-900 rounded-lg">
-            
-            {/* Live Operational Pulse */}
-            <div className="flex items-center gap-3 shrink-0">
-              <div className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-              </div>
-              <p className="font-mono text-[10px] font-bold text-white tracking-widest">SYSTEM_STATUS: OPTIMAL</p>
-            </div>
-
-            {/* Technical Stream (Scrolling Ticker) */}
-            <div className="flex-1 overflow-hidden border-x border-slate-800 px-6 hidden md:block">
-              <motion.div 
-                animate={{ x: [0, -400] }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="whitespace-nowrap flex gap-12"
-              >
-                {["NEXT.JS 14 ENGINE", "SUPABASE DATA NODES", "AES-256 ENCRYPTION", "POPIA COMPLIANT", "0.8s LATENCY STANDARD"].map((text, i) => (
-                  <span key={i} className="font-mono text-[9px] font-bold text-slate-500 tracking-[0.2em]">
-                    {text}
-                  </span>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Trust Verification */}
-            <div className="flex items-center gap-3 shrink-0">
-              <Lock className="h-4 w-4 text-blue-400" />
-              <p className="font-mono text-[10px] font-bold text-blue-400 tracking-widest uppercase">MLL-Trust-Verified</p>
-            </div>
-
-          </div>
         </div>
 
         {/* Performance Metrics */}
