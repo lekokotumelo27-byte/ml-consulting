@@ -1,8 +1,39 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Terminal, ArrowRight, Zap, ShieldCheck, Globe } from "lucide-react";
+import { Terminal, ArrowRight, Zap, ShieldCheck, Globe, Search, PenTool, Code2, Rocket } from "lucide-react";
 import Image from "next/image";
+
+const processSteps = [
+  {
+    id: "01",
+    title: "Discover",
+    description: "We start by understanding your business, your goals, and the real problem behind the request.",
+    icon: <Search className="h-5 w-5 text-blue-600" />,
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
+  },
+  {
+    id: "02",
+    title: "Design",
+    description: "We design scalable, secure, and user-centered solutions tailored to your business needs.",
+    icon: <PenTool className="h-5 w-5 text-blue-600" />,
+    image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=800",
+  },
+  {
+    id: "03",
+    title: "Engineer",
+    description: "We build with clean code, modern technologies, and industry best practices for performance.",
+    icon: <Code2 className="h-5 w-5 text-blue-600" />,
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800",
+  },
+  {
+    id: "04",
+    title: "Deliver",
+    description: "We deploy production-ready systems and provide ongoing support to ensure your success.",
+    icon: <Rocket className="h-5 w-5 text-blue-600" />,
+    image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=800",
+  },
+];
 
 export default function Hero() {
   return (
@@ -18,7 +49,7 @@ export default function Hero() {
         </div>
 
         {/* 1. MAIN HEADLINE */}
-        <h1 className="max-w-4xl font-sans text-4xl font-black tracking-tight text-slate-900 sm:text-6xl md:text-7xl leading-tight">
+        <h1 className="max-w-4xl font-sans text-4xl font-black tracking-tight text-slate-900 sm:text-6xl md:text-7xl leading-tight uppercase">
           WE BUILD FAST, MODERN TECH TO <span className="text-blue-600">SCALE YOUR BUSINESS.</span>
         </h1>
 
@@ -38,7 +69,7 @@ export default function Hero() {
           MLL Digital Consulting designs secure cloud systems, builds custom software, and optimizes your IT infrastructure so your company can run at peak performance without technical bottlenecks.
         </p>
 
-        {/* CTA Buttons */}
+        {/* 4. CTA Buttons */}
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
           <a
             href="/contact"
@@ -55,7 +86,73 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Performance Metrics - FULLY KEPT */}
+        {/* --- 5. HOW MLL WORKS SECTION (PLACED EXACTLY AFTER BUTTONS) --- */}
+        <div className="mt-32 mb-32">
+            <div className="text-center mb-16">
+                <span className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-blue-600 bg-blue-50 px-3 py-1 rounded border border-blue-100">
+                    OUR PROCESS
+                </span>
+                <h2 className="mt-6 font-sans text-3xl font-black tracking-tight text-slate-900 uppercase">
+                    HOW MLL WORKS
+                </h2>
+                <p className="mt-3 mx-auto max-w-xl font-sans text-sm text-slate-500 font-medium leading-relaxed">
+                    We follow a proven engineering process that ensures every solution we build delivers real value and long-term impact.
+                </p>
+            </div>
+
+            <div className="flex flex-col items-center gap-4">
+                {processSteps.map((step, index) => (
+                    <div key={step.id} className="w-full flex flex-col items-center">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 bg-white rounded-[2rem] border border-neutral-200 shadow-sm overflow-hidden min-h-[280px]"
+                        >
+                            {/* Left Content */}
+                            <div className="p-8 md:p-12 flex items-start gap-6">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 border border-blue-100 shadow-sm">
+                                    {step.icon}
+                                </div>
+                                <div className="pt-1">
+                                    <div className="flex items-center gap-3 mb-2">
+                                        <span className="font-mono text-base font-bold text-blue-600 italic">
+                                            {step.id}
+                                        </span>
+                                        <h3 className="font-sans text-xl font-black text-slate-900 uppercase tracking-tight">
+                                            {step.title}
+                                        </h3>
+                                    </div>
+                                    <p className="font-sans text-slate-500 leading-relaxed text-sm font-medium max-w-sm">
+                                        {step.description}
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Right Image */}
+                            <div className="relative h-48 md:h-full hidden md:block border-l border-neutral-100">
+                                <Image 
+                                    src={step.image} 
+                                    alt={step.title} 
+                                    fill 
+                                    className="object-cover grayscale brightness-95 opacity-90 hover:grayscale-0 transition-all duration-700" 
+                                />
+                            </div>
+                        </motion.div>
+
+                        {index !== processSteps.length - 1 && (
+                            <div className="py-4">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-blue-600">
+                                    <path d="M12 4V20M12 20L18 14M12 20L6 14" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </div>
+
+        {/* 6. Performance Metrics - FULLY PRESERVED AT THE BOTTOM */}
         <div className="mt-20 grid grid-cols-1 gap-6 border-t border-neutral-200 pt-10 sm:grid-cols-3">
           
           <div className="flex items-start gap-4">
