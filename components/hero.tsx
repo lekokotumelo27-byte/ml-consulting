@@ -6,21 +6,21 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="py-16 lg:py-28 border-b border-neutral-100 bg-white relative overflow-hidden">
+    <section className="py-12 lg:py-28 border-b border-neutral-100 bg-white relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         
         {/* Left Side: Balanced Engineering Content */}
         <div className="text-left relative">
           
-          {/* SCALED HARDWARE COMPONENTS (Desktop Only) */}
-          <div className="hidden lg:flex gap-6 mb-12">
+          {/* RESPONSIVE HARDWARE COMPONENTS (Now visible on all screens) */}
+          <div className="flex gap-4 lg:gap-6 mb-10 lg:mb-12">
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="group"
             >
-              <div className="w-48 h-32 relative rounded-2xl overflow-hidden border border-neutral-200 grayscale group-hover:grayscale-0 transition-all duration-700 shadow-md">
+              <div className="w-32 h-20 lg:w-48 lg:h-32 relative rounded-xl lg:rounded-2xl overflow-hidden border border-neutral-200 grayscale group-hover:grayscale-0 transition-all duration-700 shadow-md">
                 <Image 
                   src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800" 
                   alt="Hardware Core Logic" 
@@ -29,7 +29,7 @@ export default function Hero() {
                 />
                 <div className="absolute inset-0 bg-blue-600/5 group-hover:bg-transparent transition-colors" />
               </div>
-              <p className="mt-3 font-mono text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em]">
+              <p className="mt-2 lg:mt-3 font-mono text-[7px] lg:text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em]">
                 HW_CORE_LOGIC // V.01
               </p>
             </motion.div>
@@ -40,7 +40,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="group"
             >
-              <div className="w-48 h-32 relative rounded-2xl overflow-hidden border border-neutral-200 grayscale group-hover:grayscale-0 transition-all duration-700 shadow-md">
+              <div className="w-32 h-20 lg:w-48 lg:h-32 relative rounded-xl lg:rounded-2xl overflow-hidden border border-neutral-200 grayscale group-hover:grayscale-0 transition-all duration-700 shadow-md">
                 <Image 
                   src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=800" 
                   alt="IO System Bus" 
@@ -49,7 +49,7 @@ export default function Hero() {
                 />
                 <div className="absolute inset-0 bg-blue-600/5 group-hover:bg-transparent transition-colors" />
               </div>
-              <p className="mt-3 font-mono text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em]">
+              <p className="mt-2 lg:mt-3 font-mono text-[7px] lg:text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em]">
                 IO_SYSTEM_BUS // ACTIVE
               </p>
             </motion.div>
