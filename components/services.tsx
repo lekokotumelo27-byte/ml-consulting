@@ -9,18 +9,14 @@ import {
   Layout, Globe
 } from "lucide-react";
 
-// --- PREMIUM TECHNICAL ICON HEADER (Clean, No solid colors) ---
+// --- PREMIUM TECHNICAL ICON HEADER ---
 const PremiumIconHeader = ({ icon: Icon }: { icon: any }) => (
   <div className="relative h-48 w-full overflow-hidden bg-neutral-50 flex items-center justify-center border-b border-neutral-100">
-    {/* Very faint technical grid for identity */}
     <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#2563EB_1px,transparent_1px),linear-gradient(to_bottom,#2563EB_1px,transparent_1px)] bg-[size:32px_32px]" />
-    
     <div className="relative">
       <Icon className="h-16 w-16 text-blue-600 opacity-80" strokeWidth={1} />
-      {/* Subtle architectural glow */}
       <div className="absolute inset-0 bg-blue-500/10 blur-2xl -z-10 rounded-full scale-150" />
     </div>
-
     <div className="absolute bottom-4 right-6 font-mono text-[7px] text-slate-300 font-bold uppercase tracking-[0.3em]">
       System_Module_v1.2
     </div>
@@ -137,10 +133,11 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-24 bg-white border-b border-neutral-200 uppercase">
+    <section id="services" className="pt-8 pb-24 bg-white border-b border-neutral-200 uppercase">
       <div className="mx-auto max-w-7xl px-6">
         
-        <div className="mb-20">
+        {/* Tightened Header Section */}
+        <div className="mb-12">
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded border border-blue-100">
             OUR CAPABILITIES
           </span>
@@ -161,7 +158,6 @@ export default function Services() {
             >
               <div className="flex flex-col h-full">
                 
-                {/* Header Logic: Premium Icon or Image */}
                 {service.useIcon ? (
                   <PremiumIconHeader icon={service.headerIcon} />
                 ) : (
