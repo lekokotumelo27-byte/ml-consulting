@@ -9,20 +9,20 @@ import {
   Layout, Globe
 } from "lucide-react";
 
-// --- REUSABLE SCHEMATIC HEADER FOR TECHNICAL VIBE ---
-const SchematicHeader = ({ icon: Icon }: { icon: any }) => (
-  <div className="relative h-48 w-full overflow-hidden bg-slate-950 border-b border-slate-800 flex items-center justify-center">
-    <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:20px_20px]" />
-    <div className="relative z-10">
-      <Icon className="h-16 w-16 text-blue-500 opacity-80" strokeWidth={1} />
-      <motion.div 
-        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 4, repeat: Infinity }}
-        className="absolute inset-0 bg-blue-500/20 blur-3xl -z-10"
-      />
+// --- PREMIUM TECHNICAL ICON HEADER (Clean, No solid colors) ---
+const PremiumIconHeader = ({ icon: Icon }: { icon: any }) => (
+  <div className="relative h-48 w-full overflow-hidden bg-neutral-50 flex items-center justify-center border-b border-neutral-100">
+    {/* Very faint technical grid for identity */}
+    <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#2563EB_1px,transparent_1px),linear-gradient(to_bottom,#2563EB_1px,transparent_1px)] bg-[size:32px_32px]" />
+    
+    <div className="relative">
+      <Icon className="h-16 w-16 text-blue-600 opacity-80" strokeWidth={1} />
+      {/* Subtle architectural glow */}
+      <div className="absolute inset-0 bg-blue-500/10 blur-2xl -z-10 rounded-full scale-150" />
     </div>
-    <div className="absolute bottom-4 right-4 font-mono text-[8px] text-slate-500 font-bold uppercase tracking-[0.2em]">
-      Architecture_Render_v1.1
+
+    <div className="absolute bottom-4 right-6 font-mono text-[7px] text-slate-300 font-bold uppercase tracking-[0.3em]">
+      System_Module_v1.2
     </div>
   </div>
 );
@@ -34,8 +34,8 @@ export default function Services() {
       title: "UI/UX Design",
       description: "Designing premium visual systems and interactive prototypes that represent your brand with absolute authority.",
       icon: <Palette className="h-6 w-6" />,
-      useSchematic: true,
-      schematicIcon: Layout,
+      useIcon: true,
+      headerIcon: Layout,
       deliverables: ["Interface design layouts", "Interactive prototypes"],
       gridArea: "md:col-span-2",
     },
@@ -44,8 +44,8 @@ export default function Services() {
       title: "Web Design",
       description: "Engineering high-performance, responsive websites custom-built for business speed and SEO.",
       icon: <Monitor className="h-6 w-6" />,
-      useSchematic: true,
-      schematicIcon: Globe,
+      useIcon: true,
+      headerIcon: Globe,
       deliverables: ["Custom code", "Mobile optimization"],
       gridArea: "md:col-span-1",
     },
@@ -54,8 +54,8 @@ export default function Services() {
       title: "App & System Design",
       description: "Constructing tailored web applications and robust system structures for secure data management.",
       icon: <Database className="h-6 w-6" />,
-      useSchematic: true,
-      schematicIcon: Cpu,
+      useIcon: true,
+      headerIcon: Cpu,
       deliverables: ["Database engineering", "Secure auth systems"],
       gridArea: "md:col-span-1",
     },
@@ -64,8 +64,8 @@ export default function Services() {
       title: "System Integration",
       description: "Eliminating friction by configuring secure cloud servers and establishing reliable software integrations.",
       icon: <Settings className="h-6 w-6" />,
-      useSchematic: true,
-      schematicIcon: Share2,
+      useIcon: true,
+      headerIcon: Share2,
       deliverables: ["Cloud server setup", "Third-party integrations"],
       gridArea: "md:col-span-2",
     },
@@ -92,8 +92,8 @@ export default function Services() {
       title: "Workflow Automation",
       description: "Creating intelligent automations that streamline business processes and drive impact.",
       icon: <Zap className="h-6 w-6" />,
-      useSchematic: true,
-      schematicIcon: Activity,
+      useIcon: true,
+      headerIcon: Activity,
       deliverables: ["Process automation", "Data pipelines"],
       gridArea: "md:col-span-1",
     },
@@ -111,8 +111,8 @@ export default function Services() {
       title: "Technical Strategy",
       description: "Providing high-level architectural roadmaps and decision-making support for growth.",
       icon: <Network className="h-6 w-6" />,
-      useSchematic: true,
-      schematicIcon: Compass,
+      useIcon: true,
+      headerIcon: Compass,
       deliverables: ["Technical roadmaps", "Architecture planning"],
       gridArea: "md:col-span-1",
     },
@@ -161,9 +161,9 @@ export default function Services() {
             >
               <div className="flex flex-col h-full">
                 
-                {/* Header Logic */}
-                {service.useSchematic ? (
-                  <SchematicHeader icon={service.schematicIcon} />
+                {/* Header Logic: Premium Icon or Image */}
+                {service.useIcon ? (
+                  <PremiumIconHeader icon={service.headerIcon} />
                 ) : (
                   <div className="relative h-48 w-full overflow-hidden border-b border-neutral-100">
                     <Image 
@@ -176,7 +176,7 @@ export default function Services() {
                   </div>
                 )}
 
-                <div className="p-8 lg:p-10 flex-1">
+                <div className="p-8 lg:p-10 flex-1 text-left">
                   <div className="flex items-center justify-between mb-8">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 border border-blue-100 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
                       {service.icon}
