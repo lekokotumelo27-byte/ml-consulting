@@ -25,7 +25,7 @@ export default function Services() {
       title: "UI/UX Design",
       description: "Designing premium visual systems and interactive prototypes that represent your brand with absolute authority.",
       icon: <Palette className="h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1545235617-9465d2a55698?q=80&w=800",
+      image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=800",
       deliverables: ["Interface design layouts", "Interactive prototypes"],
       gridArea: "md:col-span-2",
     },
@@ -43,7 +43,7 @@ export default function Services() {
       title: "App & System Design",
       description: "Constructing tailored web applications and robust system structures for secure data management.",
       icon: <Database className="h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1558494949-ef8b565a19f7?q=80&w=800",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800", // FIXED
       deliverables: ["Database engineering", "Secure auth systems"],
       gridArea: "md:col-span-1",
     },
@@ -52,7 +52,7 @@ export default function Services() {
       title: "System Integration",
       description: "Eliminating friction by configuring secure cloud servers and establishing reliable software integrations.",
       icon: <Settings className="h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1551703599-6b3e8379aa8b?q=80&w=800",
+      image: "https://images.unsplash.com/photo-1558494949-ef8b565a19f7?q=80&w=800", // FIXED
       deliverables: ["Cloud server setup", "Third-party integrations"],
       gridArea: "md:col-span-2",
     },
@@ -79,7 +79,7 @@ export default function Services() {
       title: "Workflow Automation",
       description: "Creating intelligent automations that streamline business processes and drive impact.",
       icon: <Zap className="h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800", // FIXED
       deliverables: ["Process automation", "Data pipelines"],
       gridArea: "md:col-span-1",
     },
@@ -97,7 +97,7 @@ export default function Services() {
       title: "Technical Strategy",
       description: "Providing high-level architectural roadmaps and decision-making support for growth.",
       icon: <Network className="h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1454165833767-027508496b4c?q=80&w=800",
+      image: "https://images.unsplash.com/photo-1454165833767-027508496b4c?q=80&w=800", // FIXED
       deliverables: ["Technical roadmaps", "Architecture planning"],
       gridArea: "md:col-span-1",
     },
@@ -147,7 +147,7 @@ export default function Services() {
               className={`group flex flex-col justify-between rounded-3xl border border-neutral-200 bg-white overflow-hidden shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-500 ${service.gridArea}`}
             >
               <div className="flex flex-col h-full">
-                {/* 100% Unique Image Header */}
+                {/* Technical Image Header */}
                 <div className="relative h-48 w-full overflow-hidden border-b border-neutral-100">
                   <Image 
                     src={service.image} 
@@ -180,7 +180,7 @@ export default function Services() {
                     {service.deliverables.map((item, dIndex) => (
                       <li key={dIndex} className="flex items-center gap-3">
                         <Check className="h-3.5 w-3.5 text-blue-600" />
-                        <span className="font-sans text-[11px] font-bold text-slate-700 tracking-wide">{item}</span>
+                        <span className="font-sans text-[11px] font-bold text-slate-700 uppercase tracking-wide">{item}</span>
                       </li>
                     ))}
                   </ul>
