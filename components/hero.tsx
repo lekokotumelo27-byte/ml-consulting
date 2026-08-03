@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Cloud, Code2, Users, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -9,7 +10,49 @@ export default function Hero() {
       <div className="mx-auto max-w-7xl px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         
         {/* Left Side: Balanced Engineering Content */}
-        <div className="text-left">
+        <div className="text-left relative">
+          
+          {/* HARDWARE MICRO-CARDS (Placed in the empty space above) */}
+          <div className="hidden lg:flex gap-4 mb-10">
+            <motion.div 
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="group"
+            >
+              <div className="w-24 h-16 relative rounded-lg overflow-hidden border border-neutral-200 grayscale group-hover:grayscale-0 transition-all duration-500 shadow-sm">
+                <Image 
+                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=400" 
+                  alt="Hardware Core Logic" 
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="mt-2 font-mono text-[8px] font-bold text-slate-400 uppercase tracking-widest">
+                HW_CORE_LOGIC // V.01
+              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="group"
+            >
+              <div className="w-24 h-16 relative rounded-lg overflow-hidden border border-neutral-200 grayscale group-hover:grayscale-0 transition-all duration-500 shadow-sm">
+                <Image 
+                  src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400" 
+                  alt="IO System Bus" 
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="mt-2 font-mono text-[8px] font-bold text-slate-400 uppercase tracking-widest">
+                IO_SYSTEM_BUS // ACTIVE
+              </p>
+            </motion.div>
+          </div>
+
           <div className="flex items-center gap-2 mb-6 text-blue-600 font-bold font-mono text-[10px] tracking-widest uppercase">
             <ArrowRight className="h-3 w-3" /> Solutions Engineered for Growth
           </div>
@@ -25,7 +68,6 @@ export default function Hero() {
         {/* Right Side: Technical "Alive" Schematic */}
         <div className="relative h-[350px] lg:h-[500px] flex items-center justify-center bg-blue-50/10 rounded-[2.5rem] border border-blue-50/50 shadow-inner">
           <svg viewBox="0 0 500 500" className="w-full h-full">
-            {/* 1. ANIMATED DATA PATHS (The Lines) */}
             <motion.path 
               d="M250 100 L400 200 L250 300 L100 200 Z" 
               fill="none" 
@@ -46,7 +88,6 @@ export default function Hero() {
               transition={{ duration: 2, ease: "easeInOut" }}
             />
 
-            {/* 2. THE HEARTBEAT (Central Core) */}
             <g transform="translate(250, 225)">
               <motion.circle 
                 r="15" 
@@ -58,40 +99,22 @@ export default function Hero() {
               <circle r="4" fill="#2563EB" />
             </g>
 
-            {/* 3. FLOATING NODES */}
-            
-            {/* Top Node - Cloud */}
-            <motion.g 
-              animate={{ y: [0, -10, 0] }} 
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <circle cx="250" cy="150" r="35" fill="white" stroke="#2563EB" strokeWidth="1" className="shadow-sm" />
+            <motion.g animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
+              <circle cx="250" cy="150" r="35" fill="white" stroke="#2563EB" strokeWidth="1" />
               <Cloud className="text-blue-600" x="235" y="135" width="30" />
             </motion.g>
 
-            {/* Right Node - Code */}
-            <motion.g 
-              animate={{ x: [0, 8, 0] }} 
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            >
+            <motion.g animate={{ x: [0, 8, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}>
               <circle cx="400" cy="200" r="25" fill="white" stroke="#2563EB" strokeWidth="1" />
               <Code2 className="text-blue-600" x="388" y="188" width="24" />
             </motion.g>
 
-            {/* Left Node - Users */}
-            <motion.g 
-              animate={{ x: [0, -8, 0] }} 
-              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            >
+            <motion.g animate={{ x: [0, -8, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}>
               <circle cx="100" cy="200" r="25" fill="white" stroke="#2563EB" strokeWidth="1" />
               <Users className="text-blue-600" x="88" y="188" width="24" />
             </motion.g>
 
-            {/* Bottom Node - Shield */}
-            <motion.g 
-              animate={{ y: [0, 10, 0] }} 
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-            >
+            <motion.g animate={{ y: [0, 10, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}>
               <circle cx="250" cy="300" r="30" fill="white" stroke="#2563EB" strokeWidth="1" />
               <ShieldCheck className="text-blue-600" x="238" y="288" width="24" />
             </motion.g>
