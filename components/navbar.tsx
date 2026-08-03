@@ -23,8 +23,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: "Our Services", href: "/services" },
-    { name: "The Workshop", href: "/workshop" },
+    { name: "Services", href: "/services" },
+    { name: "Workshop", href: "/workshop" },
     { name: "Consulting", href: "/consulting" },
     { name: "Our Story", href: "/our-story" },
     { name: "Projects", href: "/projects" },
@@ -56,7 +56,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Status & CTA (Conflict Fixed Here) */}
+        {/* Status & CTA */}
         <div className="hidden md:flex items-center gap-6">
           <div className="flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50/50 px-3 py-1">
             <span className="relative flex h-2 w-2">
@@ -69,7 +69,7 @@ export default function Navbar() {
             href="/contact"
             className="group flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-xs font-bold tracking-wider transition-all duration-200 shadow-sm"
           >
-            INITIATE BRIEFING
+            TALK TO US
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </div>
@@ -103,7 +103,7 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="flex h-12 items-center justify-center gap-2 bg-blue-600 text-white text-xs font-bold tracking-wider rounded-lg shadow-sm"
                 >
-                  INITIATE BRIEFING <ArrowUpRight className="h-4 w-4" />
+                  TALK TO US <ArrowUpRight className="h-4 w-4" />
                 </a>
               </div>
             </div>
