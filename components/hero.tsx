@@ -12,42 +12,44 @@ export default function Hero() {
         {/* Left Side: Balanced Engineering Content */}
         <div className="text-left relative">
           
-          {/* HARDWARE MICRO-CARDS (Placed in the empty space above) */}
-          <div className="hidden lg:flex gap-4 mb-10">
+          {/* SCALED HARDWARE COMPONENTS (Desktop Only) */}
+          <div className="hidden lg:flex gap-6 mb-12">
             <motion.div 
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="group"
             >
-              <div className="w-24 h-16 relative rounded-lg overflow-hidden border border-neutral-200 grayscale group-hover:grayscale-0 transition-all duration-500 shadow-sm">
+              <div className="w-48 h-32 relative rounded-2xl overflow-hidden border border-neutral-200 grayscale group-hover:grayscale-0 transition-all duration-700 shadow-md">
                 <Image 
-                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=400" 
+                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800" 
                   alt="Hardware Core Logic" 
                   fill
                   className="object-cover"
                 />
+                <div className="absolute inset-0 bg-blue-600/5 group-hover:bg-transparent transition-colors" />
               </div>
-              <p className="mt-2 font-mono text-[8px] font-bold text-slate-400 uppercase tracking-widest">
+              <p className="mt-3 font-mono text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em]">
                 HW_CORE_LOGIC // V.01
               </p>
             </motion.div>
 
             <motion.div 
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="group"
             >
-              <div className="w-24 h-16 relative rounded-lg overflow-hidden border border-neutral-200 grayscale group-hover:grayscale-0 transition-all duration-500 shadow-sm">
+              <div className="w-48 h-32 relative rounded-2xl overflow-hidden border border-neutral-200 grayscale group-hover:grayscale-0 transition-all duration-700 shadow-md">
                 <Image 
-                  src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400" 
+                  src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=800" 
                   alt="IO System Bus" 
                   fill
                   className="object-cover"
                 />
+                <div className="absolute inset-0 bg-blue-600/5 group-hover:bg-transparent transition-colors" />
               </div>
-              <p className="mt-2 font-mono text-[8px] font-bold text-slate-400 uppercase tracking-widest">
+              <p className="mt-3 font-mono text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em]">
                 IO_SYSTEM_BUS // ACTIVE
               </p>
             </motion.div>
