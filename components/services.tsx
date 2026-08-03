@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { 
   Palette,
   Monitor, 
@@ -8,6 +9,11 @@ import {
   Settings, 
   GraduationCap, 
   HeartHandshake, 
+  Code2,
+  CloudDownload,
+  Zap,
+  ShieldAlert,
+  Network,
   Check, 
   ArrowRight 
 } from "lucide-react";
@@ -17,156 +23,178 @@ export default function Services() {
     {
       id: "01",
       title: "UI/UX Design",
-      description: "We design premium visual layouts, interactive prototypes, and custom user journeys. We ensure your digital products look stunning, feel intuitive, and represent your brand with absolute authority before writing any code.",
-      icon: <Palette className="h-6 w-6 text-blue-600" />,
-      deliverables: [
-        "Custom interface design layouts",
-        "Interactive user prototypes",
-        "Brand visual styling systems",
-        "User journey mapping paths"
-      ],
-      gridArea: "md:col-span-2", // Large Card
+      description: "We design premium visual layouts, interactive prototypes, and custom user journeys that represent your brand with absolute authority.",
+      icon: <Palette className="h-6 w-6" />,
+      image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=800",
+      deliverables: ["Interface design layouts", "Interactive prototypes"],
+      gridArea: "md:col-span-2",
     },
     {
       id: "02",
-      title: "Complete Web Design",
-      description: "We engineer high-performance, responsive websites custom-built for your business. From complete modern redesigns of outdated platforms to brand-new digital launches, we ensure speed, security, and search engine optimization.",
-      icon: <Monitor className="h-6 w-6 text-blue-600" />,
-      deliverables: [
-        "High-performance custom code",
-        "Responsive mobile layouts",
-        "Search Engine Optimization (SEO)",
-        "Page speed optimization"
-      ],
-      gridArea: "md:col-span-1", // Small Card
+      title: "Web Design",
+      description: "Engineering high-performance, responsive websites custom-built for business speed and SEO.",
+      icon: <Monitor className="h-6 w-6" />,
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800",
+      deliverables: ["Custom code", "Mobile optimization"],
+      gridArea: "md:col-span-1",
     },
     {
       id: "03",
-      title: "Application & System Design",
-      description: "We construct tailored web applications, secure client portals, and custom internal dashboards. We design robust system structures that allow your users to safely register, log in, and manage operational data.",
-      icon: <Database className="h-6 w-6 text-blue-600" />,
-      deliverables: [
-        "Client portal development",
-        "Secure authentication systems",
-        "Database schema engineering",
-        "Operational data dashboards"
-      ],
-      gridArea: "md:col-span-1", // Small Card
+      title: "App & System Design",
+      description: "Constructing tailored web applications and robust system structures for secure data management.",
+      icon: <Database className="h-6 w-6" />,
+      image: "https://images.unsplash.com/photo-1558494949-ef8b565a19f7?q=80&w=800",
+      deliverables: ["Database engineering", "Secure auth systems"],
+      gridArea: "md:col-span-1",
     },
     {
       id: "04",
-      title: "System Setup & Integration",
-      description: "We eliminate the friction of technical setups. We configure professional email systems, secure cloud servers, custom domains, and establish reliable integrations between your daily software tools.",
-      icon: <Settings className="h-6 w-6 text-blue-600" />,
-      deliverables: [
-        "Google Workspace / Outlook config",
-        "Custom domain configuration",
-        "Cloud server setup",
-        "Third-party tool integrations"
-      ],
-      gridArea: "md:col-span-2", // Large Card
+      title: "System Integration",
+      description: "Eliminating friction by configuring secure cloud servers and establishing reliable software integrations.",
+      icon: <Settings className="h-6 w-6" />,
+      image: "https://images.unsplash.com/photo-1551703599-6b3e8379aa8b?q=80&w=800",
+      deliverables: ["Cloud server setup", "Third-party integrations"],
+      gridArea: "md:col-span-2",
     },
     {
       id: "05",
-      title: "Client Training & Onboarding",
-      description: "We ensure your team is fully equipped to run your new systems. We deliver dedicated walkthrough training sessions, custom video guides, and technical reference manuals to guarantee a seamless operational handoff.",
-      icon: <GraduationCap className="h-6 w-6 text-blue-600" />,
-      deliverables: [
-        "Live staff walkthrough training",
-        "Custom video reference guides",
-        "User onboarding playbooks",
-        "System documentation manuals"
-      ],
-      gridArea: "md:col-span-1", // Small Card
+      title: "Software Modernization",
+      description: "Re-architecting legacy platforms into modern, high-speed Next.js environments.",
+      icon: <Code2 className="h-6 w-6" />,
+      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800",
+      deliverables: ["Code refactoring", "Stack migration"],
+      gridArea: "md:col-span-1",
     },
     {
       id: "06",
-      title: "Technical Support & Maintenance",
-      description: "We offer a dedicated, premium monthly helpdesk service to monitor and maintain your systems. From regular security backups and performance tracking to fast layout changes, we keep your digital operations secure and online.",
-      icon: <HeartHandshake className="h-6 w-6 text-blue-600" />,
-      deliverables: [
-        "Cloud server monitoring",
-        "Automated system backups",
-        "Dedicated helpdesk ticket support",
-        "Monthly system updates"
-      ],
-      gridArea: "md:col-span-2", // Large Card
+      title: "Cloud Scaling",
+      description: "Managing secure, reliable and cost-effective cloud infrastructure for global deployment.",
+      icon: <CloudDownload className="h-6 w-6" />,
+      image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800",
+      deliverables: ["Infrastructure scaling", "Cloud migration"],
+      gridArea: "md:col-span-1",
+    },
+    {
+      id: "07",
+      title: "Workflow Automation",
+      description: "Creating intelligent automations that streamline business processes and drive impact.",
+      icon: <Zap className="h-6 w-6" />,
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800",
+      deliverables: ["Process automation", "Data pipelines"],
+      gridArea: "md:col-span-1",
+    },
+    {
+      id: "08",
+      title: "Security & POPIA Audit",
+      description: "Performing technical health checks to ensure data encryption and legal compliance.",
+      icon: <ShieldAlert className="h-6 w-6" />,
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800",
+      deliverables: ["Vulnerability checks", "POPIA compliance"],
+      gridArea: "md:col-span-2",
+    },
+    {
+      id: "09",
+      title: "Technical Strategy",
+      description: "Providing high-level architectural roadmaps and decision-making support for growth.",
+      icon: <Network className="h-6 w-6" />,
+      image: "https://images.unsplash.com/photo-1454165833767-027508496b4c?q=80&w=800",
+      deliverables: ["Technical roadmaps", "Architecture planning"],
+      gridArea: "md:col-span-1",
+    },
+    {
+      id: "10",
+      title: "Training & Onboarding",
+      description: "Equipping teams with the technical skills to run and manage new systems effectively.",
+      icon: <GraduationCap className="h-6 w-6" />,
+      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800",
+      deliverables: ["Staff walkthroughs", "Documentation manuals"],
+      gridArea: "md:col-span-1",
+    },
+    {
+      id: "11",
+      title: "Maintenance & Support",
+      description: "Dedicated premium helpdesk service to maintain, monitor, and update your systems.",
+      icon: <HeartHandshake className="h-6 w-6" />,
+      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=800",
+      deliverables: ["24/7 Monitoring", "Monthly updates"],
+      gridArea: "md:col-span-1",
     },
   ];
 
   return (
-    <section id="services" className="py-24 bg-blue-50/20 scroll-mt-20 border-b border-neutral-200">
+    <section id="services" className="py-24 bg-white border-b border-neutral-200">
       <div className="mx-auto max-w-7xl px-6">
         
         {/* Section Header */}
-        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-blue-600">
-              OUR CAPABILITIES
-            </span>
-            <h2 className="mt-2 font-sans text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
-              HOW WE CAN HELP YOUR BUSINESS
-            </h2>
-          </div>
-          <p className="max-w-md font-sans text-base text-slate-600 leading-relaxed">
-            We design, develop, and manage clean digital systems. Built to save you time and help your business grow.
-          </p>
+        <div className="mb-20">
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded border border-blue-100">
+            OUR CAPABILITIES
+          </span>
+          <h2 className="mt-6 font-sans text-4xl font-black tracking-tight text-slate-900 sm:text-5xl uppercase">
+            HOW WE CAN HELP <br /> YOUR <span className="text-blue-600">BUSINESS.</span>
+          </h2>
         </div>
 
-        {/* Dynamic Bento Weave Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Bento Weave Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
               viewport={{ once: true }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className={`group flex flex-col justify-between rounded-lg border border-neutral-200 bg-white p-8 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300 ${service.gridArea}`}
+              className={`group flex flex-col justify-between rounded-3xl border border-neutral-200 bg-white overflow-hidden shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-500 ${service.gridArea}`}
             >
-              <div>
-                {/* Icon & Label */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-blue-100 bg-blue-50 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors duration-300">
-                    <span className="text-blue-600 group-hover:text-white transition-colors duration-300">
-                      {service.icon}
-                    </span>
-                  </div>
-                  <span className="font-mono text-xs font-bold text-neutral-400">
-                    SERVICE {service.id}
-                  </span>
+              <div className="flex flex-col h-full">
+                {/* Technical Image Header */}
+                <div className="relative h-48 w-full overflow-hidden border-b border-neutral-100">
+                  <Image 
+                    src={service.image} 
+                    alt={service.title} 
+                    fill 
+                    className="object-cover grayscale brightness-95 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
+                  />
+                  <div className="absolute inset-0 bg-blue-600/5 mix-blend-multiply" />
                 </div>
 
                 {/* Content */}
-                <h3 className="font-sans text-xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors">
-                  {service.title}
-                </h3>
-                <p className="font-sans text-sm md:text-base text-slate-600 leading-relaxed mb-6">
-                  {service.description}
-                </p>
+                <div className="p-8 lg:p-10 flex-1">
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 border border-blue-100 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                      {service.icon}
+                    </div>
+                    <span className="font-mono text-[10px] font-bold text-slate-400 tracking-widest">
+                      ID // {service.id}
+                    </span>
+                  </div>
 
-                {/* Deliverables */}
-                <ul className="space-y-3 border-t border-neutral-100 pt-6">
-                  {services[index].deliverables.map((item, dIndex) => (
-                    <li key={dIndex} className="flex items-center gap-3">
-                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600">
-                        <Check className="h-3 w-3" />
-                      </div>
-                      <span className="font-sans text-sm font-medium text-slate-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                  <h3 className="font-sans text-xl font-black text-slate-900 mb-4 uppercase tracking-tight group-hover:text-blue-600 transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="font-sans text-sm text-slate-500 leading-relaxed mb-8">
+                    {service.description}
+                  </p>
 
-              {/* Card Footer */}
-              <div className="mt-8 flex items-center justify-between pt-4 border-t border-neutral-100">
-                <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-neutral-400 group-hover:text-blue-600 transition-colors">
-                  READY TO ENGAGE
-                </span>
-                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-neutral-200 text-neutral-400 group-hover:border-blue-500 group-hover:text-blue-600 transition-all">
-                  <ArrowRight className="h-4 w-4" />
-                </span>
+                  <ul className="space-y-3 pt-6 border-t border-slate-50">
+                    {service.deliverables.map((item, dIndex) => (
+                      <li key={dIndex} className="flex items-center gap-3">
+                        <Check className="h-3.5 w-3.5 text-blue-600" />
+                        <span className="font-sans text-[11px] font-bold text-slate-700 uppercase tracking-wide">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Footer Link */}
+                <div className="px-8 pb-8 lg:px-10 lg:pb-10">
+                  <div className="flex items-center justify-between pt-6 border-t border-slate-50">
+                    <span className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-slate-400 group-hover:text-blue-600 transition-colors">
+                      Ready to build
+                    </span>
+                    <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
