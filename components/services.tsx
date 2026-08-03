@@ -5,10 +5,11 @@ import Image from "next/image";
 import { 
   Palette, Monitor, Database, Settings, GraduationCap, 
   HeartHandshake, Code2, CloudDownload, Zap, ShieldAlert, 
-  Network, Check, ArrowRight, Cpu, Share2, Compass, Activity
+  Network, Check, ArrowRight, Cpu, Share2, Compass, Activity,
+  Layout, Globe
 } from "lucide-react";
 
-// --- REUSABLE SCHEMATIC HEADER FOR BROKEN IMAGES ---
+// --- REUSABLE SCHEMATIC HEADER FOR TECHNICAL VIBE ---
 const SchematicHeader = ({ icon: Icon }: { icon: any }) => (
   <div className="relative h-48 w-full overflow-hidden bg-slate-950 border-b border-slate-800 flex items-center justify-center">
     <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:20px_20px]" />
@@ -21,7 +22,7 @@ const SchematicHeader = ({ icon: Icon }: { icon: any }) => (
       />
     </div>
     <div className="absolute bottom-4 right-4 font-mono text-[8px] text-slate-500 font-bold uppercase tracking-[0.2em]">
-      System_Schematic_v1.0
+      Architecture_Render_v1.1
     </div>
   </div>
 );
@@ -33,7 +34,8 @@ export default function Services() {
       title: "UI/UX Design",
       description: "Designing premium visual systems and interactive prototypes that represent your brand with absolute authority.",
       icon: <Palette className="h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=800",
+      useSchematic: true,
+      schematicIcon: Layout,
       deliverables: ["Interface design layouts", "Interactive prototypes"],
       gridArea: "md:col-span-2",
     },
@@ -42,7 +44,8 @@ export default function Services() {
       title: "Web Design",
       description: "Engineering high-performance, responsive websites custom-built for business speed and SEO.",
       icon: <Monitor className="h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1547658719-da2b81169141?q=80&w=800",
+      useSchematic: true,
+      schematicIcon: Globe,
       deliverables: ["Custom code", "Mobile optimization"],
       gridArea: "md:col-span-1",
     },
@@ -158,7 +161,7 @@ export default function Services() {
             >
               <div className="flex flex-col h-full">
                 
-                {/* Header Logic: Show Image or Schematic */}
+                {/* Header Logic */}
                 {service.useSchematic ? (
                   <SchematicHeader icon={service.schematicIcon} />
                 ) : (
