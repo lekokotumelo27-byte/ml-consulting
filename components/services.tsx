@@ -3,20 +3,28 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { 
-  Palette,
-  Monitor, 
-  Database, 
-  Settings, 
-  GraduationCap, 
-  HeartHandshake, 
-  Code2,
-  CloudDownload,
-  Zap,
-  ShieldAlert,
-  Network,
-  Check, 
-  ArrowRight 
+  Palette, Monitor, Database, Settings, GraduationCap, 
+  HeartHandshake, Code2, CloudDownload, Zap, ShieldAlert, 
+  Network, Check, ArrowRight, Cpu, Share2, Compass, Activity
 } from "lucide-react";
+
+// --- REUSABLE SCHEMATIC HEADER FOR BROKEN IMAGES ---
+const SchematicHeader = ({ icon: Icon }: { icon: any }) => (
+  <div className="relative h-48 w-full overflow-hidden bg-slate-950 border-b border-slate-800 flex items-center justify-center">
+    <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:20px_20px]" />
+    <div className="relative z-10">
+      <Icon className="h-16 w-16 text-blue-500 opacity-80" strokeWidth={1} />
+      <motion.div 
+        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 4, repeat: Infinity }}
+        className="absolute inset-0 bg-blue-500/20 blur-3xl -z-10"
+      />
+    </div>
+    <div className="absolute bottom-4 right-4 font-mono text-[8px] text-slate-500 font-bold uppercase tracking-[0.2em]">
+      System_Schematic_v1.0
+    </div>
+  </div>
+);
 
 export default function Services() {
   const services = [
@@ -43,7 +51,8 @@ export default function Services() {
       title: "App & System Design",
       description: "Constructing tailored web applications and robust system structures for secure data management.",
       icon: <Database className="h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800", // FIXED
+      useSchematic: true,
+      schematicIcon: Cpu,
       deliverables: ["Database engineering", "Secure auth systems"],
       gridArea: "md:col-span-1",
     },
@@ -52,7 +61,8 @@ export default function Services() {
       title: "System Integration",
       description: "Eliminating friction by configuring secure cloud servers and establishing reliable software integrations.",
       icon: <Settings className="h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1558494949-ef8b565a19f7?q=80&w=800", // FIXED
+      useSchematic: true,
+      schematicIcon: Share2,
       deliverables: ["Cloud server setup", "Third-party integrations"],
       gridArea: "md:col-span-2",
     },
@@ -79,7 +89,8 @@ export default function Services() {
       title: "Workflow Automation",
       description: "Creating intelligent automations that streamline business processes and drive impact.",
       icon: <Zap className="h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800", // FIXED
+      useSchematic: true,
+      schematicIcon: Activity,
       deliverables: ["Process automation", "Data pipelines"],
       gridArea: "md:col-span-1",
     },
@@ -97,7 +108,8 @@ export default function Services() {
       title: "Technical Strategy",
       description: "Providing high-level architectural roadmaps and decision-making support for growth.",
       icon: <Network className="h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1454165833767-027508496b4c?q=80&w=800", // FIXED
+      useSchematic: true,
+      schematicIcon: Compass,
       deliverables: ["Technical roadmaps", "Architecture planning"],
       gridArea: "md:col-span-1",
     },
@@ -125,7 +137,6 @@ export default function Services() {
     <section id="services" className="py-24 bg-white border-b border-neutral-200 uppercase">
       <div className="mx-auto max-w-7xl px-6">
         
-        {/* Section Header */}
         <div className="mb-20">
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded border border-blue-100">
             OUR CAPABILITIES
@@ -135,7 +146,6 @@ export default function Services() {
           </h2>
         </div>
 
-        {/* Bento Weave Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, index) => (
             <motion.div
@@ -147,18 +157,22 @@ export default function Services() {
               className={`group flex flex-col justify-between rounded-3xl border border-neutral-200 bg-white overflow-hidden shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-500 ${service.gridArea}`}
             >
               <div className="flex flex-col h-full">
-                {/* Technical Image Header */}
-                <div className="relative h-48 w-full overflow-hidden border-b border-neutral-100">
-                  <Image 
-                    src={service.image} 
-                    alt={service.title} 
-                    fill 
-                    className="object-cover grayscale brightness-95 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
-                  />
-                  <div className="absolute inset-0 bg-blue-600/5 mix-blend-multiply" />
-                </div>
+                
+                {/* Header Logic: Show Image or Schematic */}
+                {service.useSchematic ? (
+                  <SchematicHeader icon={service.schematicIcon} />
+                ) : (
+                  <div className="relative h-48 w-full overflow-hidden border-b border-neutral-100">
+                    <Image 
+                      src={service.image || ""} 
+                      alt={service.title} 
+                      fill 
+                      className="object-cover grayscale brightness-95 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
+                    />
+                    <div className="absolute inset-0 bg-blue-600/5 mix-blend-multiply" />
+                  </div>
+                )}
 
-                {/* Content */}
                 <div className="p-8 lg:p-10 flex-1">
                   <div className="flex items-center justify-between mb-8">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 border border-blue-100 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
@@ -186,7 +200,6 @@ export default function Services() {
                   </ul>
                 </div>
 
-                {/* Footer Link */}
                 <div className="px-8 pb-8 lg:px-10 lg:pb-10">
                   <div className="flex items-center justify-between pt-6 border-t border-slate-50">
                     <span className="font-mono text-[9px] font-bold tracking-[0.2em] text-slate-400 group-hover:text-blue-600 transition-colors uppercase">
