@@ -23,9 +23,9 @@ export default function Services() {
     {
       id: "01",
       title: "UI/UX Design",
-      description: "We design premium visual layouts, interactive prototypes, and custom user journeys that represent your brand with absolute authority.",
+      description: "Designing premium visual systems and interactive prototypes that represent your brand with absolute authority.",
       icon: <Palette className="h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=800",
+      image: "https://images.unsplash.com/photo-1545235617-9465d2a55698?q=80&w=800",
       deliverables: ["Interface design layouts", "Interactive prototypes"],
       gridArea: "md:col-span-2",
     },
@@ -34,7 +34,7 @@ export default function Services() {
       title: "Web Design",
       description: "Engineering high-performance, responsive websites custom-built for business speed and SEO.",
       icon: <Monitor className="h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800",
+      image: "https://images.unsplash.com/photo-1547658719-da2b81169141?q=80&w=800",
       deliverables: ["Custom code", "Mobile optimization"],
       gridArea: "md:col-span-1",
     },
@@ -61,7 +61,7 @@ export default function Services() {
       title: "Software Modernization",
       description: "Re-architecting legacy platforms into modern, high-speed Next.js environments.",
       icon: <Code2 className="h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800",
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800",
       deliverables: ["Code refactoring", "Stack migration"],
       gridArea: "md:col-span-1",
     },
@@ -122,7 +122,7 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-24 bg-white border-b border-neutral-200">
+    <section id="services" className="py-24 bg-white border-b border-neutral-200 uppercase">
       <div className="mx-auto max-w-7xl px-6">
         
         {/* Section Header */}
@@ -130,7 +130,7 @@ export default function Services() {
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded border border-blue-100">
             OUR CAPABILITIES
           </span>
-          <h2 className="mt-6 font-sans text-4xl font-black tracking-tight text-slate-900 sm:text-5xl uppercase">
+          <h2 className="mt-6 font-sans text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">
             HOW WE CAN HELP <br /> YOUR <span className="text-blue-600">BUSINESS.</span>
           </h2>
         </div>
@@ -147,7 +147,7 @@ export default function Services() {
               className={`group flex flex-col justify-between rounded-3xl border border-neutral-200 bg-white overflow-hidden shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-500 ${service.gridArea}`}
             >
               <div className="flex flex-col h-full">
-                {/* Technical Image Header */}
+                {/* 100% Unique Image Header */}
                 <div className="relative h-48 w-full overflow-hidden border-b border-neutral-100">
                   <Image 
                     src={service.image} 
@@ -169,10 +169,10 @@ export default function Services() {
                     </span>
                   </div>
 
-                  <h3 className="font-sans text-xl font-black text-slate-900 mb-4 uppercase tracking-tight group-hover:text-blue-600 transition-colors">
+                  <h3 className="font-sans text-xl font-black text-slate-900 mb-4 tracking-tight group-hover:text-blue-600 transition-colors">
                     {service.title}
                   </h3>
-                  <p className="font-sans text-sm text-slate-500 leading-relaxed mb-8">
+                  <p className="font-sans text-sm text-slate-500 leading-relaxed mb-8 normal-case font-medium">
                     {service.description}
                   </p>
 
@@ -180,7 +180,7 @@ export default function Services() {
                     {service.deliverables.map((item, dIndex) => (
                       <li key={dIndex} className="flex items-center gap-3">
                         <Check className="h-3.5 w-3.5 text-blue-600" />
-                        <span className="font-sans text-[11px] font-bold text-slate-700 uppercase tracking-wide">{item}</span>
+                        <span className="font-sans text-[11px] font-bold text-slate-700 tracking-wide">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -189,7 +189,7 @@ export default function Services() {
                 {/* Footer Link */}
                 <div className="px-8 pb-8 lg:px-10 lg:pb-10">
                   <div className="flex items-center justify-between pt-6 border-t border-slate-50">
-                    <span className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-slate-400 group-hover:text-blue-600 transition-colors">
+                    <span className="font-mono text-[9px] font-bold tracking-[0.2em] text-slate-400 group-hover:text-blue-600 transition-colors uppercase">
                       Ready to build
                     </span>
                     <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
